@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evdeki Ses — Nilüfer Ormanlı</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/santral" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/e1dfb0da15bc47f4a472a6d1df9f45de?family=Santral-Medium" rel="stylesheet" type="text/css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      background: #fff;
+      color: #fff;
+      font-family: 'Santral-Medium', 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 300;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .zapf{font-family: 'Santral', 'Inter', system-ui, -apple-system, sans-serif;}
+
+    /* ═════════════════════════════════════════════
+       NAV COMPONENT — fixed, full width
+       Mirrors: sp-navbar3_component
+    ═════════════════════════════════════════════ */
+    .sp-navbar3_component {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 9999;
+      will-change: transform;
+    }
+
+    /* ── Banner ── */
+    .sp-navbar3_banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      height: 50px;
+      background: white;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      color: rgb(24, 24, 27);
+      font-size: 0.8125rem; /* 13px */
+      text-decoration: none;
+    }
+
+    .banner-inner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner-dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .banner-dot svg { width: 8px; height: 8px; }
+
+    .banner-link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: rgb(24, 24, 27);;
+      font-weight: 400;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      padding-bottom: 1px;
+    }
+
+    /* ── Wrapper ── */
+    .sp-navbar3_wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 4.5rem;
+      position: relative;
+      transition: padding 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sp-navbar3_wrapper.is-scrolled {
+      padding: 1rem 0;
+    }
+
+    /* Logo — absolutely centered */
+    .sp-navbar3_logo {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      flex-shrink: 0;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .sp-navbar3_wrapper.is-scrolled .sp-navbar3_logo {
+      transform: translate(-50%, -50%) scale(0.85);
+    }
+
+    /* ── Inner pill ── */
+    .sp-navbar3_inner {
+      font-family: 'Santral-Medium';
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border-radius: 624.9375rem;
+      transition:
+        max-width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        padding 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        gap 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        backdrop-filter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 100%;
+      background-color: transparent;
+      padding: 0;
+      gap: 0;
+    }
+    .sp-navbar3_wrapper.is-scrolled .sp-navbar3_inner {
+      max-width: 56rem;
+      background-color: rgba(0,0,0,0.6);
+      -webkit-backdrop-filter: blur(1.5rem);
+      backdrop-filter: blur(1.5rem);
+      padding: 0.375rem 0.375rem 0.375rem 1.5rem;
+      gap: 4rem;
+    }
+
+    /* ── Left (links) ── */
+    .sp-navbar3_left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      width: 28rem;
+      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sp-navbar3_wrapper.is-scrolled .sp-navbar3_left { width: auto; }
+
+    .sp-navbar3_link {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.875rem;
+      line-height: 1.3125rem;
+      white-space: nowrap;
+      transition: opacity 0.15s ease-out;
+    }
+    .sp-navbar3_link:hover { opacity: 0.7; }
+
+    /* ── Right (actions) ── */
+    .sp-navbar3_right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 1rem;
+      width: 25.5rem;
+      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sp-navbar3_wrapper.is-scrolled .sp-navbar3_right { width: auto; }
+
+    .sp-navbar3_login {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.875rem;
+      line-height: 1.3125rem;
+      white-space: nowrap;
+    }
+    .sp-navbar3_login:hover { opacity: 0.7; }
+
+    .sp-navbar3_cta {
+      font-family: "Santral-Medium"; 
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #5e321c;
+      background-color: #fff;
+      border-radius: 624.938rem;
+      padding: 0.75rem 1.375rem 0.45rem 1.375rem;
+      font-size: 0.875rem;
+      line-height: 1.3125rem;
+      white-space: nowrap;
+      font-weight: 500;
+      transition: padding 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s;
+    }
+    .sp-navbar3_cta:hover { opacity: 0.85; }
+    .sp-navbar3_wrapper.is-scrolled .sp-navbar3_cta {
+      padding: 0.5rem 1rem;
+    }
+
+    /* ═════════════════════════════════════════════
+       HERO SECTION
+    ═════════════════════════════════════════════ */
+    .section_sp2-home-hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+      height: calc(100dvh - 50px);
+      margin: 3.125rem 0 0;
+      padding: 0 0.5rem 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section_sp2-home-hero-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      align-self: stretch;
+      height: 100%;
+      border-radius: 0.75rem;
+      padding-bottom: 4rem;
+      padding-left: 4rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+
+      background:
+      radial-gradient(ellipse 75% 85% at 18% 38%, rgba(28,46,53,0.32) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 65% at 88% 72%, rgba(36,58,52,0.38) 0%, transparent 60%),
+      linear-gradient(155deg, #1C1F21 0%, #0D1118 42%, #0A0E12 100%);
+
+      background-image: url('assets/uzunHero.jpg');
+      background-size: auto 130%;
+      background-position: bottom right;
+    }
+
+    .section_sp2-home-hero-inner::after {
+      content: '';
+      position: absolute;
+      inset: -280vw;
+      background:
+        radial-gradient(50% 45% at 72% 30%, rgba(160, 110, 50, 0.3) 0%, transparent 70%),
+        radial-gradient(51% 60% at 18% 68%, rgba(110, 80, 170, 0.3) 0%, transparent 80%);
+      filter: blur(300px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .sp2-home-hero_component {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      z-index: 10;
+      position: relative;
+    }
+
+    .sp2-hero_bg-video {
+      position: absolute;
+      inset: 0%;
+    }
+
+    .video-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: inherit;
+      background: transparent;
+      --vc-fade-in: 420ms;
+      --vc-fade-out: 520ms;
+      --vc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      -webkit-transform: translateZ(0);
+    }
+
+    .video-card {
+      cursor: pointer;
+      flex-flow: column;
+      justify-content: center;
+      align-items: end;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .video-card div{
+          display: flex;width: 16vw;
+    }
+
+    .video-card.is-events-none {
+      pointer-events: none;
+    }
+
+    .video-card:not([data-vc-no-cardclick]):is( [data-vc-lightbox], [data-vc-bg], :not([data-vc-bg]) ) {
+      cursor: pointer;
+    }
+
+    .video-card .vc-poster {
+      position: absolute;
+      inset: 0;
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 0;
+      opacity: 0.6;
+      pointer-events: none;
+      transition: opacity var(--vc-fade-out) var(--vc-ease);
+      will-change: opacity;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      align-self: flex-end;
+      justify-self: flex-end;
+      margin-right: 270px;
+    }
+
+    .video-card.is-bg .vc-poster {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .video-card video.vc-video {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity var(--vc-fade-in) var(--vc-ease);
+      will-change: opacity;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+
+    .video-card.is-bg video.vc-video {
+      opacity: 1 !important;
+    }
+
+    /* badge */
+    .badge_block {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    .badge_icon { width: 14px; height: 14px; }
+
+    /* h1 */
+    .heading-style-h1 {
+      font-size: 3.75rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 1rem;
+      .line-break{height: 20px;}
+    }
+
+    .heading-style-h1 .italic {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .sp2-home-hero_content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      max-width: 37rem;
+      color: #fff;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-sub {
+      font-family: "Santral-Medium";
+      font-size: 1rem;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .button-group {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      flex-wrap: wrap;
+    }
+
+    /* CTA primary (solid white) */
+    .btn-primary {
+      font-family: 'Santral-Medium';
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #fff; color: #5e321c;
+      border: none; border-radius: 624.938rem;
+      font-size: 0.9375rem; font-weight: 500;
+      padding: 0.75rem 1.375rem 0.45rem 1.375rem;
+      transition: opacity 0.15s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: 0.87; transform: translateY(-1px); }
+
+    /* CTA secondary (outline) */
+    .btn-secondary {
+      font-family: "Santral-Medium";
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.06); color: #fff;
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 624.938rem;
+      font-size: 0.9375rem; font-weight: 300;
+      padding: 0.75rem 1.375rem 0.45rem 1.375rem;
+      transition: background 0.15s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+
+    .btn-arrow { width: 13px; height: 13px; }
+
+    /* Bottom notes */
+    .sp2-home-hero_bottom-notes {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      color: rgba(255,255,255,0.55);
+      position: relative;
+      z-index: 10;
+    }
+
+    .bottom-note {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 300;
+    }
+
+    .check-icon {
+      width: 15px; height: 15px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .check-icon svg { width: 7px; height: 7px; }
+
+    /* ═════════════════════════════════════════════
+       HOWITWORKS SECTION
+    ═════════════════════════════════════════════ */
+    .howitworks {
+      color: #fff;
+      width: 100%;
+      height: 800vh;
+      font-size: 1rem;
+      line-height: 1.4;
+      position: relative;
+    }
+
+    .howitworks__stage {
+      border-radius: 0.5rem;
+      width: calc(100% - 1rem);
+      height: calc(100vh - 1rem);
+      margin: 0 0.5rem;
+      position: sticky;
+      top: 0.5rem;
+      overflow: hidden;
+    }
+
+    /* ── bg slot ── */
+    .howitworks__bg-slot {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .howitworks__bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      visibility: hidden;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* Background gradients */
+    .howitworks__bg[data-howitworks-bg="0"] {
+      background:
+        radial-gradient(ellipse 80% 70% at 58% 42%, rgba(140,90,30,0.6) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 65%, rgba(90,55,15,0.45) 0%, transparent 55%),
+        #100d08;
+    }
+    .howitworks__bg[data-howitworks-bg="1"] {
+      background:
+        radial-gradient(ellipse 75% 65% at 52% 48%, rgba(40,60,120,0.6) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 22% 72%, rgba(25,45,95,0.45) 0%, transparent 55%),
+        #08090e;
+    }
+    .howitworks__bg[data-howitworks-bg="2"] {
+      background:
+        radial-gradient(ellipse 75% 65% at 55% 40%, rgba(35,95,70,0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 50% at 28% 72%, rgba(20,70,50,0.4) 0%, transparent 55%),
+        #080e0b;
+    }
+    .howitworks__bg[data-howitworks-bg="3"] {
+      background:
+        radial-gradient(ellipse 75% 65% at 50% 42%, rgba(90,45,120,0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 50% at 72% 70%, rgba(65,30,95,0.4) 0%, transparent 55%),
+        #0c090f;
+    }
+    .howitworks__bg[data-howitworks-bg="4"] {
+      background:
+        radial-gradient(ellipse 75% 65% at 48% 44%, rgba(120,55,70,0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 50% at 75% 68%, rgba(90,35,50,0.4) 0%, transparent 55%),
+        #0f0a0c;
+    }
+
+    @keyframes howitworks-bg-enter {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+    @keyframes howitworks-bg-prev {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-11rem); }
+    }
+    @keyframes howitworks-bg-enter-reverse {
+      from { transform: translateY(-100%); }
+      to   { transform: translateY(0); }
+    }
+    @keyframes howitworks-bg-prev-reverse {
+      from { transform: translateY(0); }
+      to   { transform: translateY(11rem); }
+    }
+
+    .howitworks__bg.is-active {
+      visibility: visible;
+      z-index: 2;
+      animation: howitworks-bg-enter 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    }
+    .howitworks__bg.is-prev {
+      visibility: visible;
+      z-index: 1;
+      animation: howitworks-bg-prev 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+      filter: brightness(0.5);
+    }
+    .howitworks--reverse .howitworks__bg.is-active {
+      animation: howitworks-bg-enter-reverse 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    }
+    .howitworks--reverse .howitworks__bg.is-prev {
+      animation: howitworks-bg-prev-reverse 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    }
+
+    /* ── content slot ── */
+    .howitworks__content-slot {
+      position: absolute;
+      left: 3rem; top: 0; bottom: 0;
+      z-index: 3;
+      width: 32rem;
+      max-width: calc(100% - 8rem);
+      pointer-events: none;
+    }
+
+    .howitworks__content {
+      position: absolute;
+      top: 43%; left: 0;
+      width: 100%; max-width: 28rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(calc(1.5rem - 50%));
+      transition:
+        opacity 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .howitworks__content.is-active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%);
+      transition-delay: 60ms;
+    }
+    .howitworks--reverse .howitworks__content {
+      transform: translateY(calc(-1.5rem - 50%));
+    }
+    .howitworks--reverse .howitworks__content.is-active {
+      transform: translateY(-50%);
+    }
+
+    .howitworks__title {
+      margin: 0 0 0.5rem;
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #fff;
+      transition: color 0.4s;
+    }
+    .howitworks__body {
+      margin: 0;
+      font-size: 1.125rem;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+      transition: color 0.4s;
+    }
+
+    /* ── faq slot ── */
+    .howitworks__faq-slot {
+      position: absolute;
+      bottom: 3rem; left: 3rem;
+      z-index: 3;
+      width: 30rem;
+      max-width: calc(100% - 8rem);
+    }
+
+    .howitworks__faq {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      transform: translateY(1.5rem);
+      transition:
+        opacity 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .howitworks__faq.is-active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(0);
+      transition-delay: 290ms;
+    }
+
+    /* ── faq items ── */
+    .howitworks__faq-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      padding: 0.75rem 0.75rem 0.75rem 1.25rem;
+      background-color: rgba(20,20,20,0.5);
+      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #fff;
+      text-align: left;
+      box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+      transition: filter 0.1s;
+    }
+    .howitworks__faq-item:hover { filter: brightness(90%); }
+
+    /* ── faq icon ── */
+    .howitworks__faq-icon-wrap {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 0.25rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem; height: 2rem;
+    }
+    .howitworks__faq-icon { display: flex; align-items: center; justify-content: center; }
+    .howitworks__faq-icon svg { width: 20px; height: 20px; }
+
+    /* ── nav ── */
+    .howitworks__nav {
+      position: absolute;
+      right: 3rem; top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      list-style: none;
+      padding: 0; margin: 0;
+    }
+
+    .howitworks__nav-item {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 0 0 1rem;
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.55);
+      background: none;
+      border: none;
+      white-space: nowrap;
+      cursor: pointer;
+      width: 100%;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .howitworks__nav-item:hover { color: #fff; }
+    .howitworks__nav-item.is-active { color: #fff; }
+
+    /* Vertical bar indicator */
+    .howitworks__nav-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      width: 1px; height: 1.25rem;
+      background: #fff;
+      opacity: 0;
+      transform: translate(0, calc(-50% - 0.625rem)) scaleY(0.3);
+      transform-origin: center center;
+      transition:
+        transform 400ms cubic-bezier(0.22, 0.61, 0.36, 1),
+        opacity 150ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .howitworks__nav-item.is-active::before {
+      opacity: 1;
+      transform: translate(0, -50%) scaleY(1);
+    }
+
+    .howitworks__nav-label {
+      text-align: right;
+      flex: 1;
+    }
+    .howitworks__nav-num {
+      font-variant-numeric: tabular-nums;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* dark mode variant */
+    .howitworks__nav-item--dark { color: rgba(17,17,17,0.5); }
+    .howitworks__nav-item--dark.is-active { color: #111; }
+    .howitworks__nav-item--dark.is-active::before { background: #111; }
+    .howitworks__title--dark,
+    .howitworks__body--dark { color: #111; }
+
+    /* ═════════════════════════════════════════════
+       MODAL OVERLAY
+    ═════════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(8,8,12,0.75);
+      -webkit-backdrop-filter: blur(14px) saturate(1.2);
+      backdrop-filter: blur(14px) saturate(1.2);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-card {
+      background: #f5f4f0;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(10px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .modal-overlay.is-open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-img-area {
+      position: relative;
+      width: 100%; height: 200px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-img-area.img-warm { background: linear-gradient(140deg, #7a2810 0%, #c45020 55%, #6a2008 100%); }
+    .modal-img-area.img-cool { background: linear-gradient(140deg, #162240 0%, #2a4278 55%, #0e1830 100%); }
+    .modal-img-area.img-green { background: linear-gradient(140deg, #162a1e 0%, #2a5038 55%, #0e1e14 100%); }
+    .modal-img-area.img-purple { background: linear-gradient(140deg, #1e1228 0%, #3a2060 55%, #140c1e 100%); }
+    .modal-img-area.img-rose { background: linear-gradient(140deg, #2a1018 0%, #5a2030 55%, #1a0a10 100%); }
+
+    .modal-close-btn {
+      position: absolute; top: 14px; right: 14px;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 18px;
+      transition: background 0.2s;
+      z-index: 1; line-height: 1;
+    }
+    .modal-close-btn:hover { background: rgba(255,255,255,0.32); }
+
+    .modal-body {
+      padding: 2rem 2.25rem 2.5rem;
+      background: #f5f4f0;
+      color: #111;
+    }
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: #111;
+      margin-bottom: 0.875rem;
+    }
+    .modal-desc {
+      font-size: 0.9375rem;
+      color: rgba(17,17,17,0.6);
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      margin-top: 0.5rem;
+    }
+    .modal-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+      color: rgba(17,17,17,0.65);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+    .modal-list__dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(17,17,17,0.3);
+      margin-top: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    .modal-detail-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(17,17,17,0.08);
+    }
+    .modal-detail-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      color: rgba(17,17,17,0.5);
+    }
+    .modal-detail-row strong {
+      color: #111;
+      font-weight: 400;
+    }
+
+    /* ═════════════════════════════════════════════
+       HAMBURGER BUTTON
+    ═════════════════════════════════════════════ */
+    .sp-navbar3_hamburger {
+      cursor: pointer;
+      background: none;
+      border: none;
+      border-radius: 624.9375rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem; height: 2rem;
+      padding: 0;
+      transition:
+        width 0.25s cubic-bezier(0.16,1,0.3,1),
+        height 0.25s cubic-bezier(0.16,1,0.3,1),
+        background-color 0.25s cubic-bezier(0.16,1,0.3,1),
+        backdrop-filter 0.25s cubic-bezier(0.16,1,0.3,1);
+    }
+    .sp-navbar3_wrapper.is-scrolled .sp-navbar3_hamburger {
+      width: 3.0625rem;
+      height: 3.0625rem;
+      background-color: rgba(0,0,0,0.6);
+      -webkit-backdrop-filter: blur(1.5rem);
+      backdrop-filter: blur(1.5rem);
+    }
+    .sp-navbar3_hamburger svg { display: block; }
+
+    /* ═════════════════════════════════════════════
+       SLIDE-OUT MENU
+    ═════════════════════════════════════════════ */
+    .sp-navbar3_menu {
+      position: fixed;
+      top: 0; right: 0;
+      width: 32rem;
+      height: 100vh;
+      z-index: 10000;
+      background-color: #fff;
+      border-top-left-radius: 1.5rem;
+      border-bottom-left-radius: 1.5rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      will-change: transform;
+      visibility: hidden;
+    }
+    .sp-navbar3_menu.is-open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    /* menu top row */
+    .sp-navbar3_menu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sp-navbar3_menu-title {
+      color: #18181b;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: -0.04rem;
+      line-height: 2.375rem;
+    }
+    .sp-navbar3_menu-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sp-navbar3_menu-login {
+      color: #18181b;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      padding: 0.75rem 1.25rem;
+      text-decoration: none;
+    }
+    .sp-navbar3_menu-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #18181b;
+      color: #fff;
+      border-radius: 624.938rem;
+      padding: 0.75rem 1.25rem;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      text-decoration: none;
+      white-space: nowrap;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .sp-navbar3_menu-cta:hover { opacity: 0.8; }
+    .sp-navbar3_menu-close {
+      cursor: pointer;
+      background: none;
+      border: none;
+      border-radius: 624.938rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem; height: 3rem;
+      padding: 0.5rem;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .sp-navbar3_menu-close:hover { background: rgba(0,0,0,0.05); }
+
+    /* menu nav links */
+    .sp-navbar3_menu-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      padding-bottom: 3rem;
+    }
+    .sp-navbar3_menu-label {
+      opacity: 0.5;
+      color: #18181b;
+      font-size: 0.875rem;
+      line-height: 1.3125rem;
+      padding-bottom: 0.5rem;
+    }
+    .sp-navbar3_menu-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #18181b;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: -0.04rem;
+      line-height: 2.375rem;
+      text-decoration: none;
+      position: relative;
+    }
+    .sp-navbar3_menu-nav-link::before {
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.15s ease-out;
+      flex-shrink: 0;
+    }
+    .sp-navbar3_menu-nav-link:hover::before { width: 0.5rem; }
+
+    /* menu footer columns */
+    .sp-navbar3_menu-footer {
+      display: flex;
+      gap: 1rem;
+      padding-right: 1rem;
+      margin-top: auto;
+    }
+    .sp-navbar3_menu-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+    .sp-navbar3_menu-col-label {
+      opacity: 0.5;
+      color: #18181b;
+      font-size: 0.875rem;
+      line-height: 1.3125rem;
+    }
+    .sp-navbar3_menu-col-link {
+      color: #18181b;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .sp-navbar3_menu-col-link:hover { opacity: 0.6; }
+
+    /* menu overlay */
+    .sp-navbar3_overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 9998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .sp-navbar3_overlay.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ═════════════════════════════════════════════
+       QUICK STRIP
+    ═════════════════════════════════════════════ */
+    .quick-strip {
+      background: #fff;
+      color: #18181b;
+      padding: 1.375rem 2rem;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .quick-strip__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.75rem;
+      flex-wrap: wrap;
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+    .qs-item {
+      font-size: 0.875rem;
+      color: rgba(24,24,27,0.65);
+      font-weight: 300;
+      white-space: nowrap;
+    }
+    .qs-sep {
+      color: rgba(24,24,27,0.18);
+      font-size: 1.125rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* ═════════════════════════════════════════════
+       RECOGNITION / AYNA SECTION
+    ═════════════════════════════════════════════ */
+    .recognition {
+      background: #fff;
+      padding: 0.5rem 0.5rem 0;
+    }
+    .recognition__card {
+      background:
+        radial-gradient(ellipse 70% 75% at 14% 35%, rgba(28,46,53,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 88% 75%, rgba(36,28,52,0.35) 0%, transparent 55%),
+        linear-gradient(155deg, #1C1F21 0%, #0D1118 42%, #0A0E12 100%);
+      border-radius: 0.75rem;
+      padding: 5rem 4rem;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .recognition__left {}
+    .recognition__eyebrow {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .recognition__lead {
+      font-size: 2.25rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: #fff;
+      max-width: 22rem;
+    }
+    .recognition__right {
+      padding-top: 0.5rem;
+    }
+    .recognition__rhythm {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 2.5rem;
+    }
+    .recognition__rhythm p {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .recognition__rhythm p.dim {
+      color: rgba(255,255,255,0.3);
+      font-style: italic;
+    }
+    .recognition__bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .recognition__bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.875rem;
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+    .recognition__bullet-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      margin-top: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    /* ═════════════════════════════════════════════
+       REFRAME SECTION
+    ═════════════════════════════════════════════ */
+    .reframe {
+      background: #fff;
+      padding: 6rem 4.5rem;
+    }
+    .reframe__inner {
+      max-width: 44rem;
+      margin: 0 auto;
+    }
+    .reframe__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(24,24,27,0.35);
+      margin-bottom: 2rem;
+    }
+    .reframe__title {
+      font-size: 2.75rem;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: #18181b;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+    .reframe__body {
+      font-size: 1.125rem;
+      color: rgba(24,24,27,0.6);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .reframe__body p + p {
+      margin-top: 1rem;
+    }
+
+    /* ═════════════════════════════════════════════
+       FORMAT SECTION
+    ═════════════════════════════════════════════ */
+    .format-section {
+      background: #fff;
+      padding: 6rem 4.5rem;
+      border-top: 1px solid rgba(0,0,0,0.07);
+    }
+    .format-section__inner {
+      max-width: 52rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .format-section__header {}
+    .format-section__eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(24,24,27,0.35);
+      margin-bottom: 1rem;
+    }
+    .format-section__title {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #18181b;
+      line-height: 1.15;
+    }
+    .format-list {
+      list-style: none;
+    }
+    .format-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(24,24,27,0.08);
+      font-size: 1rem;
+      color: rgba(24,24,27,0.75);
+      font-weight: 300;
+    }
+    .format-list li:first-child {
+      border-top: 1px solid rgba(24,24,27,0.08);
+    }
+    .format-list__icon {
+      width: 1.375rem; height: 1.375rem;
+      border-radius: 50%;
+      border: 1px solid rgba(24,24,27,0.15);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .format-list__icon svg { width: 7px; height: 7px; }
+
+    /* ═════════════════════════════════════════════
+       WHAT CHANGES SECTION
+    ═════════════════════════════════════════════ */
+    .what-changes {
+      background: #fff;
+      padding: 0.5rem 0.5rem 0;
+    }
+    .what-changes__card {
+      background:
+        radial-gradient(ellipse 65% 70% at 78% 35%, rgba(110,80,30,0.25) 0%, transparent 60%),
+        linear-gradient(155deg, #1C1F21 0%, #0D1118 42%, #0A0E12 100%);
+      border-radius: 0.75rem;
+      padding: 5rem 4rem;
+      color: #fff;
+    }
+    .what-changes__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.5rem;
+    }
+    .what-changes__title {
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 0.625rem;
+      line-height: 1.1;
+    }
+    .what-changes__sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 3rem;
+      font-weight: 300;
+      max-width: 30rem;
+      line-height: 1.65;
+    }
+    .changes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      max-width: 34rem;
+    }
+    .changes-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.875rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+    .changes-list__check {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .changes-list__check svg { width: 7px; height: 7px; }
+
+    /* ═════════════════════════════════════════════
+       WHO FOR SECTION
+    ═════════════════════════════════════════════ */
+    .who-for {
+      background: #fff;
+      padding: 6rem 4.5rem;
+    }
+    .who-for__head {
+      max-width: 52rem;
+      margin: 0 auto 3.5rem;
+    }
+    .who-for__eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(24,24,27,0.35);
+      margin-bottom: 1rem;
+    }
+    .who-for__headline {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: #18181b;
+    }
+    .who-for__inner {
+      max-width: 52rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .who-for__col-title {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #18181b;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    .who-for__col--not .who-for__col-title {
+      color: rgba(24,24,27,0.45);
+    }
+    .who-for__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .who-for__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+      color: rgba(24,24,27,0.7);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .who-for__col--not .who-for__list li {
+      color: rgba(24,24,27,0.45);
+    }
+    .who-for__list-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(24,24,27,0.25);
+      margin-top: 0.6rem;
+      flex-shrink: 0;
+    }
+    .who-for__col--not .who-for__list-dot {
+      background: rgba(24,24,27,0.15);
+    }
+
+    /* ═════════════════════════════════════════════
+       FINAL CTA SECTION
+    ═════════════════════════════════════════════ */
+    .final-cta {
+      background: #fff;
+      padding: 0.5rem 0.5rem 6rem;
+    }
+    .final-cta__card {
+      background:
+        radial-gradient(ellipse 75% 85% at 18% 38%, rgba(28,46,53,0.32) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 65% at 88% 72%, rgba(36,58,52,0.38) 0%, transparent 60%),
+        linear-gradient(155deg, #1C1F21 0%, #0D1118 42%, #0A0E12 100%);
+      border-radius: 0.75rem;
+      padding: 6rem 4rem;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    .final-cta__eyebrow {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.04em;
+      font-weight: 300;
+    }
+    .final-cta__title {
+      font-size: 3rem;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: #fff;
+      line-height: 1.1;
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+    }
+    .final-cta__details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      margin: 0.5rem 0;
+    }
+    .final-cta__details span {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      display: block;
+    }
+    .final-cta__note {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.28);
+      font-weight: 300;
+      margin-top: 0.5rem;
+    }
+
+    /* ═════════════════════════════════════════════
+       MOBILE
+    ═════════════════════════════════════════════ */
+    @media (max-width: 991px) {
+      .sp-navbar3_left { display: none; }
+      .sp-navbar3_right { width: auto; gap: 0.5rem; }
+      .sp-navbar3_right .sp-navbar3_login { display: none; }
+
+      .section_sp2-home-hero { height: calc(100dvh - 50px); }
+      .section_sp2-home-hero-inner { padding-bottom: 2rem; padding-left: 1.75rem; }
+      .heading-style-h1 { font-size: 2.5rem; }
+
+      .howitworks__nav { right: 1.5rem; }
+      .howitworks__nav-item { font-size: 0.875rem; }
+      .howitworks__nav-item::before { display: none; }
+      .howitworks__content-slot { left: 1.5rem; }
+      .howitworks__faq-slot { left: 1.5rem; right: 1.5rem; width: auto; max-width: none; }
+
+      .recognition__card {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 3rem 2rem;
+      }
+      .recognition__lead { font-size: 1.875rem; max-width: none; }
+
+      .reframe { padding: 4rem 2rem; }
+      .reframe__title { font-size: 2rem; }
+
+      .format-section { padding: 4rem 2rem; }
+      .format-section__inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .what-changes__card { padding: 3rem 2rem; }
+      .what-changes__title { font-size: 2rem; }
+
+      .who-for { padding: 4rem 2rem; }
+      .who-for__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .final-cta { padding: 0.5rem 0.5rem 4rem; }
+      .final-cta__card { padding: 4rem 2rem; }
+      .final-cta__title { font-size: 2.25rem; }
+    }
+
+    @media (max-width: 600px) {
+      .quick-strip__inner { gap: 1rem; }
+      .qs-sep { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAV COMPONENT
+═══════════════════════════════════════════════ -->
+<div class="sp-navbar3_component" id="navComponent">
+
+  <!-- Banner -->
+  <a href="#basvuru" class="sp-navbar3_banner">
+    <div class="banner-inner">
+      <div class="banner-dot">
+        <img src="assets/AI-Icon.svg" loading="lazy" alt="">
+      </div>
+      <span>İlk grup açılıyor — Kontenjan 10 kadınla sınırlı</span>
+    </div>
+    <span class="banner-link">
+      Ön başvuru yap
+      <svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1.5 4.5h6M4.5 2l2.5 2.5L4.5 7"/>
+      </svg>
+    </span>
+  </a>
+
+  <!-- Navbar wrapper -->
+  <div class="sp-navbar3_wrapper" id="navWrapper">
+
+    <!-- Logo — absolute center -->
+    <a href="#" class="sp-navbar3_logo">
+      <img src="assets/nilufer-ormanli-sutun-logo.svg" alt="Nilüfer Ormanlı" width="368px" height="35px" />
+    </a>
+
+    <!-- Inner (pill on scroll) -->
+    <div class="sp-navbar3_inner">
+
+      <!-- Left: links -->
+      <div class="sp-navbar3_left">
+        <a href="#surec" class="sp-navbar3_link">Süreç</a>
+        <a href="#format" class="sp-navbar3_link">Format</a>
+        <a href="#kime-gore" class="sp-navbar3_link">Kime Göre</a>
+      </div>
+
+      <!-- Right: actions -->
+      <div class="sp-navbar3_right">
+        <a href="#basvuru" class="sp-navbar3_cta">Başvuru Yap</a>
+        <button type="button" class="sp-navbar3_hamburger" id="hamburgerBtn" aria-label="Menüyü aç">
+          <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="2"  cy="2"  r="2" fill="white"/>
+            <circle cx="10" cy="2"  r="2" fill="white"/>
+            <circle cx="18" cy="2"  r="2" fill="white"/>
+            <circle cx="2"  cy="11" r="2" fill="white"/>
+            <circle cx="10" cy="11" r="2" fill="white"/>
+            <circle cx="18" cy="11" r="2" fill="white"/>
+            <circle cx="2"  cy="20" r="2" fill="white"/>
+            <circle cx="10" cy="20" r="2" fill="white"/>
+            <circle cx="18" cy="20" r="2" fill="white"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE-OUT MENU
+═══════════════════════════════════════════════ -->
+<div class="sp-navbar3_overlay" id="menuOverlay"></div>
+
+<div class="sp-navbar3_menu" id="sideMenu">
+
+  <div class="sp-navbar3_menu-top">
+    <div class="sp-navbar3_menu-header">
+      <h3 class="sp-navbar3_menu-title">Evdeki Ses</h3>
+    </div>
+    <div class="sp-navbar3_menu-actions">
+      <a href="#basvuru" class="sp-navbar3_menu-cta">Başvuru Yap</a>
+      <button type="button" class="sp-navbar3_menu-close" id="menuCloseBtn" aria-label="Menüyü kapat">
+        <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="2"  cy="2"  r="2" fill="black"/>
+          <circle cx="10" cy="2"  r="2" fill="black" opacity="0.1"/>
+          <circle cx="18" cy="2"  r="2" fill="black"/>
+          <circle cx="2"  cy="11" r="2" fill="black" opacity="0.1"/>
+          <circle cx="10" cy="11" r="2" fill="black"/>
+          <circle cx="18" cy="11" r="2" fill="black" opacity="0.1"/>
+          <circle cx="2"  cy="20" r="2" fill="black"/>
+          <circle cx="10" cy="20" r="2" fill="black" opacity="0.1"/>
+          <circle cx="18" cy="20" r="2" fill="black"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="sp-navbar3_menu-nav">
+    <p class="sp-navbar3_menu-label">Keşfet</p>
+    <a href="#surec" class="sp-navbar3_menu-nav-link">Süreç</a>
+    <a href="#format" class="sp-navbar3_menu-nav-link">Format</a>
+    <a href="#kime-gore" class="sp-navbar3_menu-nav-link">Kime Göre</a>
+    <a href="#basvuru" class="sp-navbar3_menu-nav-link">Başvuru</a>
+  </div>
+
+  <div class="sp-navbar3_menu-footer">
+    <div class="sp-navbar3_menu-col">
+      <p class="sp-navbar3_menu-col-label">Nilüfer Ormanlı</p>
+      <a href="#" class="sp-navbar3_menu-col-link">Hakkında</a>
+      <a href="#" class="sp-navbar3_menu-col-link">Diğer çalışmalar</a>
+    </div>
+    <div class="sp-navbar3_menu-col">
+      <p class="sp-navbar3_menu-col-label">İletişim</p>
+      <a href="#" class="sp-navbar3_menu-col-link">E-posta</a>
+      <a href="#" class="sp-navbar3_menu-col-link">Instagram</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════ -->
+<div class="section_sp2-home-hero">
+  <div class="section_sp2-home-hero-inner">
+
+    <div class="sp2-home-hero_component">
+    </div>
+
+    <div class="sp2-home-hero_content">
+
+      <h1 class="heading-style-h1">
+        <span style="font-family: 'Santral-Medium';">Sesin var.</span>
+        <div class="line-break"></div>
+        <span class="italic" style="font-size: 54px; letter-spacing: 0px;">Ama sen içinde misin?</span>
+      </h1>
+
+      <p class="hero-sub" style="font-size: 1.1rem; max-width: 28rem;">
+        Konuşuyorsun. Paylaşıyorsun.<br>
+        Bazen güçlü de görünüyorsun.<br>
+        Ama bir yerin izliyor. Bir yerin ayarlıyor. Bir yerin henüz çıkmamış bir cümleyi içeride tutuyor.<br>
+        Evdeki Ses, o yeri de duymak için.<br><br>
+
+        Ses, beden ve ifade üzerine tasarlanmış<br>
+        5 haftalık küçük grup mentorluğu.<br>
+        Çevrim içi, canlı, Türkçe.
+      </p>
+
+      <div class="button-group">
+        <a href="#basvuru" class="btn-primary">
+          Başvuru formuna göz at
+          <svg class="btn-arrow" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 6.5h9M7 3l3.5 3.5L7 10"/>
+          </svg>
+        </a>
+        <a href="#surec" class="btn-secondary">
+          Süreci keşfet
+          <svg class="btn-arrow" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 6.5h9M7 3l3.5 3.5L7 10"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="sp2-home-hero_bottom-notes">
+      <div class="bottom-note">
+        <div class="check-icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </div>
+        <span>5 haftalık program</span>
+      </div>
+      <div class="bottom-note">
+        <div class="check-icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </div>
+        <span>10 kişilik küçük grup</span>
+      </div>
+      <div class="bottom-note">
+        <div class="check-icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </div>
+        <span>Çevrim içi · Türkçe</span>
+      </div>
+    </div>
+
+    <div class="sp2-hero_bg-video">
+      <div data-vc-no-loop="" data-src="" aria-label="Open Video" data-type="hls" data-plyr-card="1" data-disable-dblfullscreen="1" data-vc-bg="" class="video-card is-events-none is-bg is-ready is-paused is-ended" data-vc-init="1">
+        <div>
+          <p class="zapf" style="font-style: italic; font-weight: 400; z-index: 1;">
+            Sesin, sen daha<br>
+            konuşmadan değişir.<br>
+            Bunu fark etmek<br>
+            her şeyi değiştirir.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     QUICK STRIP
+═══════════════════════════════════════════════ -->
+<div class="quick-strip">
+  <div class="quick-strip__inner">
+    <span class="qs-item">5 haftalık süreç</span>
+    <span class="qs-sep">·</span>
+    <span class="qs-item">10 kişilik küçük grup</span>
+    <span class="qs-sep">·</span>
+    <span class="qs-item">Canlı destekli</span>
+    <span class="qs-sep">·</span>
+    <span class="qs-item">Ses + beden + ifade</span>
+    <span class="qs-sep">·</span>
+    <span class="qs-item">Çevrim içi</span>
+    <span class="qs-sep">·</span>
+    <span class="qs-item">Türkçe</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     RECOGNITION / AYNA SECTION
+═══════════════════════════════════════════════ -->
+<div class="recognition">
+  <div class="recognition__card">
+
+    <div class="recognition__left">
+      <p class="recognition__eyebrow">Tanıyor musun?</p>
+      <h2 class="recognition__lead">Bir cümle söylemeden önce kaç adım atıyorsun?</h2>
+    </div>
+
+    <div class="recognition__right">
+      <div class="recognition__rhythm">
+        <p>Ortamı ölçüyorsun.</p>
+        <p>Tepkiyi tahmin ediyorsun.</p>
+        <p>Cümleyi yumuşatıyorsun.</p>
+        <p>Sesini ayarlıyorsun.</p>
+        <p>Sonra cümle çıkıyor.</p>
+        <p class="dim">Ama tam içinden çıkmıyor.</p>
+      </div>
+
+      <div class="recognition__bullets">
+        <div class="recognition__bullet">
+          <span class="recognition__bullet-dot"></span>
+          <span>Toplantıda konuşmak istiyorsun — ama bir şey seni durduruyor.</span>
+        </div>
+        <div class="recognition__bullet">
+          <span class="recognition__bullet-dot"></span>
+          <span>Doğru şeyi söyledin, ama sesin seni ele verdi.</span>
+        </div>
+        <div class="recognition__bullet">
+          <span class="recognition__bullet-dot"></span>
+          <span>"Hayır" diyorsun, ama sesin "belki" gibi çıkıyor.</span>
+        </div>
+        <div class="recognition__bullet">
+          <span class="recognition__bullet-dot"></span>
+          <span>İzlenirken yavaşlıyorsun, yalnızken akıyorsun.</span>
+        </div>
+        <div class="recognition__bullet">
+          <span class="recognition__bullet-dot"></span>
+          <span>Bir şeyi biliyorsun, ama ifade ederken kendini küçük hissediyorsun.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     REFRAME SECTION
+═══════════════════════════════════════════════ -->
+<div class="reframe">
+  <div class="reframe__inner">
+    <p class="reframe__label">Yeniden Çerçeve</p>
+    <h2 class="reframe__title">Bu bir ses problemi değil.</h2>
+    <div class="reframe__body">
+      <p>Beden, görünürlük etrafında organize olur. İzlenme, yargılanma, ilişki, hayır, gerçekten duyulma — bunların hepsi bedenin tuttuğu kayıtlar.</p>
+      <p>Ses sadece bir araç değil. Kim olduğunu, ne zaman kendine izin verdiğini, ne kadar yer kapladığını taşır. Bu bir ses problemi değil — bu bir bütünlük meselesi.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HOWITWORKS SECTION — 800vh scroll-driven
+═══════════════════════════════════════════════ -->
+<section id="surec" data-howitworks class="howitworks">
+  <div class="howitworks__stage">
+
+    <!-- Backgrounds (5 slides) -->
+    <div class="howitworks__bg-slot">
+      <div data-howitworks-bg="0" class="howitworks__bg is-active"></div>
+      <div data-howitworks-bg="1" class="howitworks__bg"></div>
+      <div data-howitworks-bg="2" class="howitworks__bg"></div>
+      <div data-howitworks-bg="3" class="howitworks__bg"></div>
+      <div data-howitworks-bg="4" class="howitworks__bg"></div>
+    </div>
+
+    <!-- Content (left side, changes per slide) -->
+    <div class="howitworks__content-slot">
+      <div data-howitworks-content="0" class="howitworks__content is-active">
+        <h2 class="howitworks__title">Hazırlık Alanı</h2>
+        <p class="howitworks__body">Programa başlamadan önce sesini ve bedeninle ilişkini keşfetmek için bir alan. Kendi ritmine giriş yapıyorsun. Buluşma öncesi yönlendirmeler ve kısa bir ses pratiği ile başlıyoruz.</p>
+      </div>
+      <div data-howitworks-content="1" class="howitworks__content">
+        <h2 class="howitworks__title">Hafta 1 — Zemin</h2>
+        <p class="howitworks__body">Sesin nerede başladığını, bedeninde nasıl şekillendiğini keşfediyorsun. Farkındalığın temeli buradan kuruluyor: nefes, ses kaynağı, bedenin duruşu.</p>
+      </div>
+      <div data-howitworks-content="2" class="howitworks__content">
+        <h2 class="howitworks__title">Hafta 2 — Akış</h2>
+        <p class="howitworks__body">Sesi engelleyen kalıpları fark ediyorsun. Gerilim nerede tutuluyor? Ne zaman akıyor, ne zaman kesiliyor? Beden üzerinden ses pratiğine giriyoruz.</p>
+      </div>
+      <div data-howitworks-content="3" class="howitworks__content">
+        <h2 class="howitworks__title">Hafta 3 — Görünürlük</h2>
+        <p class="howitworks__body">İzlenirken, dinlenirken ne oluyor? Görünür olmak neden zor hissettiriyor? Bu hafta tam burada — izleniyor olmak altında sesin nasıl değiştiğini çalışıyoruz.</p>
+      </div>
+      <div data-howitworks-content="4" class="howitworks__content">
+        <h2 class="howitworks__title">Hafta 4–5 — Temas &amp; Canlı Ses</h2>
+        <p class="howitworks__body">Gerçek temas: anlaşmazlıkta ses, sınır koymada ses, öfkede ses. Son haftada tüm katmanları birleştiriyoruz. Grup karşısında canlı ses pratiği ve entegrasyon.</p>
+      </div>
+    </div>
+
+    <!-- FAQ pills (bottom-left) -->
+    <div class="howitworks__faq-slot">
+      <div data-howitworks-faq="0" class="howitworks__faq is-active">
+        <button type="button" data-modal-target="bu-icin-mi" class="howitworks__faq-item">
+          <span>Bu alan benim için mi?</span>
+          <div class="howitworks__faq-icon-wrap">
+            <div class="howitworks__faq-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10.4 4C10.4 3.558 10.042 3.2 9.6 3.2C9.158 3.2 8.8 3.558 8.8 4V8.8H4C3.558 8.8 3.2 9.158 3.2 9.6C3.2 10.042 3.558 10.4 4 10.4H8.8V15.2C8.8 15.642 9.158 16 9.6 16C10.042 16 10.4 15.642 10.4 15.2V10.4H15.2C15.642 10.4 16 10.042 16 9.6C16 9.158 15.642 8.8 15.2 8.8H10.4V4Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+        </button>
+        <button type="button" data-modal-target="zaman" class="howitworks__faq-item">
+          <span>Zaman taahhüdü nedir?</span>
+          <div class="howitworks__faq-icon-wrap">
+            <div class="howitworks__faq-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10.4 4C10.4 3.558 10.042 3.2 9.6 3.2C9.158 3.2 8.8 3.558 8.8 4V8.8H4C3.558 8.8 3.2 9.158 3.2 9.6C3.2 10.042 3.558 10.4 4 10.4H8.8V15.2C8.8 15.642 9.158 16 9.6 16C10.042 16 10.4 15.642 10.4 15.2V10.4H15.2C15.642 10.4 16 10.042 16 9.6C16 9.158 15.642 8.8 15.2 8.8H10.4V4Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div data-howitworks-faq="1" class="howitworks__faq">
+        <button type="button" data-modal-target="bulusmalar" class="howitworks__faq-item">
+          <span>Canlı buluşmalar nasıl geçiyor?</span>
+          <div class="howitworks__faq-icon-wrap"><div class="howitworks__faq-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10.4 4C10.4 3.558 10.042 3.2 9.6 3.2C9.158 3.2 8.8 3.558 8.8 4V8.8H4C3.558 8.8 3.2 9.158 3.2 9.6C3.2 10.042 3.558 10.4 4 10.4H8.8V15.2C8.8 15.642 9.158 16 9.6 16C10.042 16 10.4 15.642 10.4 15.2V10.4H15.2C15.642 10.4 16 10.042 16 9.6C16 9.158 15.642 8.8 15.2 8.8H10.4V4Z" fill="white"/></svg></div></div>
+        </button>
+      </div>
+
+      <div data-howitworks-faq="2" class="howitworks__faq">
+        <button type="button" data-modal-target="kayitlar" class="howitworks__faq-item">
+          <span>Kayıtlara erişebilecek miyim?</span>
+          <div class="howitworks__faq-icon-wrap"><div class="howitworks__faq-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10.4 4C10.4 3.558 10.042 3.2 9.6 3.2C9.158 3.2 8.8 3.558 8.8 4V8.8H4C3.558 8.8 3.2 9.158 3.2 9.6C3.2 10.042 3.558 10.4 4 10.4H8.8V15.2C8.8 15.642 9.158 16 9.6 16C10.042 16 10.4 15.642 10.4 15.2V10.4H15.2C15.642 10.4 16 10.042 16 9.6C16 9.158 15.642 8.8 15.2 8.8H10.4V4Z" fill="white"/></svg></div></div>
+        </button>
+      </div>
+
+      <div data-howitworks-faq="3" class="howitworks__faq">
+        <button type="button" data-modal-target="kucuk-grup" class="howitworks__faq-item">
+          <span>Küçük grup neden önemli?</span>
+          <div class="howitworks__faq-icon-wrap"><div class="howitworks__faq-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10.4 4C10.4 3.558 10.042 3.2 9.6 3.2C9.158 3.2 8.8 3.558 8.8 4V8.8H4C3.558 8.8 3.2 9.158 3.2 9.6C3.2 10.042 3.558 10.4 4 10.4H8.8V15.2C8.8 15.642 9.158 16 9.6 16C10.042 16 10.4 15.642 10.4 15.2V10.4H15.2C15.642 10.4 16 10.042 16 9.6C16 9.158 15.642 8.8 15.2 8.8H10.4V4Z" fill="white"/></svg></div></div>
+        </button>
+      </div>
+
+      <div data-howitworks-faq="4" class="howitworks__faq">
+        <button type="button" data-modal-target="basvuru-sureci" class="howitworks__faq-item">
+          <span>Ön başvuru süreci nasıl işliyor?</span>
+          <div class="howitworks__faq-icon-wrap"><div class="howitworks__faq-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10.4 4C10.4 3.558 10.042 3.2 9.6 3.2C9.158 3.2 8.8 3.558 8.8 4V8.8H4C3.558 8.8 3.2 9.158 3.2 9.6C3.2 10.042 3.558 10.4 4 10.4H8.8V15.2C8.8 15.642 9.158 16 9.6 16C10.042 16 10.4 15.642 10.4 15.2V10.4H15.2C15.642 10.4 16 10.042 16 9.6C16 9.158 15.642 8.8 15.2 8.8H10.4V4Z" fill="white"/></svg></div></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation (right side) -->
+    <ul class="howitworks__nav">
+      <li>
+        <button type="button" data-howitworks-nav="0" class="howitworks__nav-item is-active">
+          <span class="howitworks__nav-label">Hazırlık Alanı</span>
+          <span class="howitworks__nav-num">00</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" data-howitworks-nav="1" class="howitworks__nav-item">
+          <span class="howitworks__nav-label">Zemin</span>
+          <span class="howitworks__nav-num">01</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" data-howitworks-nav="2" class="howitworks__nav-item">
+          <span class="howitworks__nav-label">Akış</span>
+          <span class="howitworks__nav-num">02</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" data-howitworks-nav="3" class="howitworks__nav-item">
+          <span class="howitworks__nav-label">Görünürlük</span>
+          <span class="howitworks__nav-num">03</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" data-howitworks-nav="4" class="howitworks__nav-item">
+          <span class="howitworks__nav-label">Temas &amp; Canlı Ses</span>
+          <span class="howitworks__nav-num">04</span>
+        </button>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FORMAT SECTION
+═══════════════════════════════════════════════ -->
+<div id="format" class="format-section">
+  <div class="format-section__inner">
+    <div class="format-section__header">
+      <p class="format-section__eyebrow">Format</p>
+      <h2 class="format-section__title">Program neleri içeriyor?</h2>
+    </div>
+    <ul class="format-list">
+      <li>
+        <span class="format-list__icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#18181b">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Canlı grup buluşması
+      </li>
+      <li>
+        <span class="format-list__icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#18181b">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Haftalık tema videosu
+      </li>
+      <li>
+        <span class="format-list__icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#18181b">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Rehberli uygulama videoları
+      </li>
+      <li>
+        <span class="format-list__icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#18181b">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Sesli pratik kayıtları
+      </li>
+      <li>
+        <span class="format-list__icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#18181b">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Haftalık çalışma dosyası
+      </li>
+      <li>
+        <span class="format-list__icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#18181b">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Günlük hayat pratikleri
+      </li>
+      <li>
+        <span class="format-list__icon">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#18181b">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Entegrasyon kaydı
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     WHAT CHANGES SECTION
+═══════════════════════════════════════════════ -->
+<div class="what-changes">
+  <div class="what-changes__card">
+    <p class="what-changes__label">Ne değişir?</p>
+    <h2 class="what-changes__title">Büyük vaatler vermeyeceğim.</h2>
+    <p class="what-changes__sub">Ama bu süreçte fark edilen şeyler genellikle şunlar oluyor:</p>
+    <ul class="changes-list">
+      <li>
+        <span class="changes-list__check">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Sesinde daha az gerilim, daha fazla akış
+      </li>
+      <li>
+        <span class="changes-list__check">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        İzlenirken dağılmak yerine kendinle kalmak
+      </li>
+      <li>
+        <span class="changes-list__check">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        "Hayır" diyebildiğin anların artması
+      </li>
+      <li>
+        <span class="changes-list__check">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Toplantılarda, ilişkilerde biraz daha burada olmak
+      </li>
+      <li>
+        <span class="changes-list__check">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Bedenin bir engel değil, bir kaynak gibi hissetmeye başlaması
+      </li>
+      <li>
+        <span class="changes-list__check">
+          <svg viewBox="0 0 7 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1,3.5 2.8,5.5 6,1.5"/>
+          </svg>
+        </span>
+        Sesin daha sık gerçekten kendinden çıkması
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     WHO THIS IS FOR SECTION
+═══════════════════════════════════════════════ -->
+<div id="kime-gore" class="who-for">
+  <div class="who-for__head">
+    <p class="who-for__eyebrow">Kime Göre</p>
+    <h2 class="who-for__headline">Bu alan sana göre mi?</h2>
+  </div>
+  <div class="who-for__inner">
+
+    <div class="who-for__col">
+      <h3 class="who-for__col-title">Sana göre olabilir</h3>
+      <ul class="who-for__list">
+        <li>
+          <span class="who-for__list-dot"></span>
+          Sesinin neden bu kadar tutuk olduğunu merak ediyorsun
+        </li>
+        <li>
+          <span class="who-for__list-dot"></span>
+          İzlenirken ya da toplantılarda kendini kaybettiğini fark ediyorsun
+        </li>
+        <li>
+          <span class="who-for__list-dot"></span>
+          Teknik bir eğitim değil, beden üzerinden çalışmak istiyorsun
+        </li>
+        <li>
+          <span class="who-for__list-dot"></span>
+          Küçük ve güvenli bir grupta olmaya hazırsın
+        </li>
+        <li>
+          <span class="who-for__list-dot"></span>
+          Seste bir şeyin değişmesini istiyorsun — ama nasıl bilmiyorsun
+        </li>
+      </ul>
+    </div>
+
+    <div class="who-for__col who-for__col--not">
+      <h3 class="who-for__col-title">Sana göre olmayabilir</h3>
+      <ul class="who-for__list">
+        <li>
+          <span class="who-for__list-dot"></span>
+          Hızlı, teknik bir ses eğitimi arıyorsan
+        </li>
+        <li>
+          <span class="who-for__list-dot"></span>
+          Sertifika ya da yetkinlik belgesi bekliyorsan
+        </li>
+        <li>
+          <span class="who-for__list-dot"></span>
+          Grup çalışmasına hazır değilsen
+        </li>
+        <li>
+          <span class="who-for__list-dot"></span>
+          İlk seanstan somut dönüşüm bekliyorsan
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FINAL CTA SECTION
+═══════════════════════════════════════════════ -->
+<div id="basvuru" class="final-cta">
+  <div class="final-cta__card">
+    <p class="final-cta__eyebrow">İlk grup on kadınla açılıyor.</p>
+    <h2 class="final-cta__title">Kendi sesine, evine dön.</h2>
+    <div class="final-cta__details">
+      <span>Kontenjan: 10 kadın</span>
+      <span>Süre: Hazırlık alanı + 5 hafta</span>
+      <span>Format: Çevrim içi, canlı küçük grup</span>
+      <span>Katılım bedeli: 12.000 TL</span>
+    </div>
+    <a href="#" class="btn-primary">
+      Başvuru formunu doldur
+      <svg class="btn-arrow" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 6.5h9M7 3l3.5 3.5L7 10"/>
+      </svg>
+    </a>
+    <p class="final-cta__note">Başvuru formu bir taahhüt değil, sadece bir ilk adım.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     FAQ MODAL
+═══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card">
+    <div id="modalInner"></div>
+  </div>
+</div>
+
+<!-- Modal templates -->
+<template id="tpl-bu-icin-mi">
+  <div class="modal-img-area img-warm">
+    <button class="modal-close-btn" data-close>×</button>
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+      <circle cx="26" cy="26" r="20" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+      <circle cx="26" cy="26" r="10" fill="rgba(255,255,255,0.15)"/>
+      <circle cx="26" cy="26" r="4" fill="rgba(255,255,255,0.4)"/>
+    </svg>
+  </div>
+  <div class="modal-body">
+    <h2 class="modal-title">Bu alan benim için mi?</h2>
+    <p class="modal-desc">Bu program ses üzerine teknik bir çalışma değil. Ses ve bedenin ilişkisini — görünürlük, izlenme, ifade kısıtlaması — hissederek keşfetmek isteyen kadınlar için tasarlandı.</p>
+    <ul class="modal-list">
+      <li><span class="modal-list__dot"></span><span>Sesinin neden tutuk olduğunu merak ediyorsan</span></li>
+      <li><span class="modal-list__dot"></span><span>İzlenirken kendinle kalmakta zorlanıyorsan</span></li>
+      <li><span class="modal-list__dot"></span><span>Beden ve nefes üzerinden çalışmaya açıksan</span></li>
+      <li><span class="modal-list__dot"></span><span>Küçük, güvenli bir grupta yer almaya hazırsan</span></li>
+    </ul>
+  </div>
+</template>
+
+<template id="tpl-zaman">
+  <div class="modal-img-area img-cool">
+    <button class="modal-close-btn" data-close>×</button>
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+      <circle cx="26" cy="26" r="18" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <line x1="26" y1="26" x2="26" y2="14" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="26" y1="26" x2="34" y2="30" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="modal-body">
+    <h2 class="modal-title">Zaman taahhüdü nedir?</h2>
+    <p class="modal-desc">Yoğun değil, ama düzenli bir alan gerektiriyor. Haftalık taahhüt yaklaşık şu şekilde:</p>
+    <ul class="modal-list">
+      <li><span class="modal-list__dot"></span><span>Haftalık canlı grup buluşması: 90 dakika</span></li>
+      <li><span class="modal-list__dot"></span><span>Tema videosu: 20–30 dakika</span></li>
+      <li><span class="modal-list__dot"></span><span>Günlük kısa pratik: 10–15 dakika</span></li>
+    </ul>
+    <div class="modal-detail-rows">
+      <div class="modal-detail-row"><span>Toplam süre</span><strong>Hazırlık + 5 hafta</strong></div>
+      <div class="modal-detail-row"><span>Format</span><strong>Çevrim içi, canlı</strong></div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-bulusmalar">
+  <div class="modal-img-area img-green">
+    <button class="modal-close-btn" data-close>×</button>
+    <svg width="60" height="50" viewBox="0 0 60 50" fill="none">
+      <ellipse cx="20" cy="25" rx="10" ry="10" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+      <ellipse cx="40" cy="25" rx="10" ry="10" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+      <ellipse cx="30" cy="25" rx="10" ry="10" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div class="modal-body">
+    <h2 class="modal-title">Canlı buluşmalar nasıl geçiyor?</h2>
+    <p class="modal-desc">Her hafta 90 dakikalık canlı grup buluşması yapıyoruz. Buluşmalar çevrim içi, küçük grupta ve yapılandırılmış bir şekilde ilerliyor.</p>
+    <ul class="modal-list">
+      <li><span class="modal-list__dot"></span><span>Haftalık temayı beyin ve beden üzerinden açıyoruz</span></li>
+      <li><span class="modal-list__dot"></span><span>Birlikte ses pratiği yapıyoruz</span></li>
+      <li><span class="modal-list__dot"></span><span>Gözlem ve sorular için alan açıyoruz</span></li>
+      <li><span class="modal-list__dot"></span><span>Hafta içi pratiğe hazırlanıyoruz</span></li>
+    </ul>
+  </div>
+</template>
+
+<template id="tpl-kayitlar">
+  <div class="modal-img-area img-purple">
+    <button class="modal-close-btn" data-close>×</button>
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+      <rect x="14" y="16" width="24" height="20" rx="3" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+      <circle cx="26" cy="26" r="5" fill="rgba(255,255,255,0.2)"/>
+      <circle cx="26" cy="26" r="2" fill="rgba(255,255,255,0.5)"/>
+    </svg>
+  </div>
+  <div class="modal-body">
+    <h2 class="modal-title">Kayıtlara erişebilecek miyim?</h2>
+    <p class="modal-desc">Canlı buluşma kayıtları programa özel platformda katılımcılara açılıyor. Tema videoları ve sesli pratikler de aynı platformda yer alıyor.</p>
+    <ul class="modal-list">
+      <li><span class="modal-list__dot"></span><span>Buluşma kayıtları: evet, erişim var</span></li>
+      <li><span class="modal-list__dot"></span><span>Tema ve uygulama videoları: program süresince ve sonrasında erişilebilir</span></li>
+      <li><span class="modal-list__dot"></span><span>Çalışma dosyaları: indirilip saklanabilir</span></li>
+    </ul>
+  </div>
+</template>
+
+<template id="tpl-kucuk-grup">
+  <div class="modal-img-area img-warm">
+    <button class="modal-close-btn" data-close>×</button>
+    <svg width="52" height="40" viewBox="0 0 52 40" fill="none">
+      <circle cx="12" cy="20" r="7" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+      <circle cx="26" cy="20" r="7" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+      <circle cx="40" cy="20" r="7" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div class="modal-body">
+    <h2 class="modal-title">Küçük grup neden önemli?</h2>
+    <p class="modal-desc">Bu çalışma, güvenli bir alanda gerçek temas kurmayı gerektiriyor. 10 kişilik sınır bunu mümkün kılıyor.</p>
+    <ul class="modal-list">
+      <li><span class="modal-list__dot"></span><span>Herkesin görünür olduğu, kaybolmadığı bir alan</span></li>
+      <li><span class="modal-list__dot"></span><span>Gerçek dinlenme ve geri bildirim mümkün oluyor</span></li>
+      <li><span class="modal-list__dot"></span><span>Grup dinamiği de bir pratik alanı haline geliyor</span></li>
+      <li><span class="modal-list__dot"></span><span>Daha az kalabalık, daha derin çalışma</span></li>
+    </ul>
+  </div>
+</template>
+
+<template id="tpl-basvuru-sureci">
+  <div class="modal-img-area img-rose">
+    <button class="modal-close-btn" data-close>×</button>
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+      <rect x="14" y="18" width="24" height="18" rx="2" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+      <path d="M14 24l12 8 12-8" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="modal-body">
+    <h2 class="modal-title">Ön başvuru süreci nasıl işliyor?</h2>
+    <p class="modal-desc">Başvuru formu bir taahhüt değil — sadece bir ilk adım. Seni tanımak için kısa sorulardan oluşan bir form.</p>
+    <ul class="modal-list">
+      <li><span class="modal-list__dot"></span><span>Formu dolduruyorsun (5–10 dakika)</span></li>
+      <li><span class="modal-list__dot"></span><span>Grupla uyum değerlendirmesi yapılıyor</span></li>
+      <li><span class="modal-list__dot"></span><span>Kısa bir tanışma görüşmesi ayarlanıyor</span></li>
+      <li><span class="modal-list__dot"></span><span>Yerini onaylıyor, programı başlatıyorsun</span></li>
+    </ul>
+    <div class="modal-detail-rows">
+      <div class="modal-detail-row"><span>Kontenjan</span><strong>10 kadın</strong></div>
+      <div class="modal-detail-row"><span>Katılım bedeli</span><strong>12.000 TL</strong></div>
+    </div>
+  </div>
+</template>
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── Side menu ── */
+  var sideMenu    = document.getElementById('sideMenu');
+  var menuOverlay = document.getElementById('menuOverlay');
+  var hamburgerBtn  = document.getElementById('hamburgerBtn');
+  var menuCloseBtn  = document.getElementById('menuCloseBtn');
+
+  function openMenu() {
+    sideMenu.classList.add('is-open');
+    menuOverlay.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    sideMenu.classList.remove('is-open');
+    menuOverlay.classList.remove('is-visible');
+    document.body.style.overflow = '';
+  }
+
+  hamburgerBtn.addEventListener('click', openMenu);
+  menuCloseBtn.addEventListener('click', closeMenu);
+  menuOverlay.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  /* ── Banner slide-up on scroll ── */
+  var navComponent = document.getElementById('navComponent');
+  var bannerHeight = document.querySelector('.sp-navbar3_banner').offsetHeight;
+  var navWrapper   = document.getElementById('navWrapper');
+
+  function updateNav() {
+    var scrollY = window.scrollY;
+    var shift = Math.min(scrollY, bannerHeight);
+    navComponent.style.transform = 'translateY(' + (-shift) + 'px)';
+    if (scrollY > 50) {
+      navWrapper.classList.add('is-scrolled');
+    } else {
+      navWrapper.classList.remove('is-scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  window.addEventListener('resize', function() {
+    bannerHeight = document.querySelector('.sp-navbar3_banner').offsetHeight;
+  });
+
+  /* ── howitworks scroll-driven + click nav ── */
+  var section  = document.querySelector('[data-howitworks]');
+  if (!section) return;
+
+  var TOTAL = 5;
+  var currentIndex = 0;
+  var targetIndex  = 0;
+  var lastTickAt   = 0;
+  var TICK_INTERVAL = 600;
+  var rafId = null;
+
+  var bgs       = section.querySelectorAll('[data-howitworks-bg]');
+  var contents  = section.querySelectorAll('[data-howitworks-content]');
+  var faqs      = section.querySelectorAll('[data-howitworks-faq]');
+  var navItems  = section.querySelectorAll('[data-howitworks-nav]');
+  var titles    = section.querySelectorAll('.howitworks__title');
+  var bodies    = section.querySelectorAll('.howitworks__body');
+
+  function setDark(isDark) {
+    titles.forEach(function(el)   { el.classList.toggle('howitworks__title--dark', isDark); });
+    bodies.forEach(function(el)   { el.classList.toggle('howitworks__body--dark', isDark); });
+    navItems.forEach(function(el) { el.classList.toggle('howitworks__nav-item--dark', isDark); });
+  }
+
+  function setActive(index) {
+    if (index === currentIndex) return;
+    if (index < 0 || index >= TOTAL) return;
+
+    var prevIndex = currentIndex;
+    currentIndex = index;
+    lastTickAt = performance.now();
+
+    section.classList.toggle('howitworks--reverse', index < prevIndex);
+
+    bgs.forEach(function(el) {
+      el.classList.remove('is-active', 'is-prev');
+      var i = parseInt(el.getAttribute('data-howitworks-bg'), 10);
+      if (i === prevIndex) el.classList.add('is-prev');
+      if (i === index) { void el.offsetWidth; el.classList.add('is-active'); }
+    });
+
+    function swap(nodeList, attr) {
+      nodeList.forEach(function(el) {
+        var i = parseInt(el.getAttribute(attr), 10);
+        el.classList.toggle('is-active', i === index);
+      });
+    }
+    swap(contents,  'data-howitworks-content');
+    swap(faqs,      'data-howitworks-faq');
+    swap(navItems,  'data-howitworks-nav');
+
+    setDark(false);
+  }
+
+  /* Tick loop (throttled multi-step catch-up) */
+  function tickLoop() {
+    if (currentIndex === targetIndex) { rafId = null; return; }
+    var now = performance.now();
+    if (now - lastTickAt >= TICK_INTERVAL) {
+      var dir = currentIndex < targetIndex ? 1 : -1;
+      setActive(currentIndex + dir);
+    }
+    rafId = requestAnimationFrame(tickLoop);
+  }
+
+  function setTarget(index) {
+    if (index < 0) index = 0;
+    if (index >= TOTAL) index = TOTAL - 1;
+    if (index === targetIndex) return;
+    targetIndex = index;
+    if (!rafId) rafId = requestAnimationFrame(tickLoop);
+  }
+
+  /* Scroll → target index */
+  function onScroll() {
+    var rect = section.getBoundingClientRect();
+    var scrolledIn = -rect.top;
+    if (scrolledIn < 0) scrolledIn = 0;
+    var totalScroll = section.offsetHeight - window.innerHeight;
+    var progress = scrolledIn / totalScroll;
+    setTarget(Math.min(TOTAL - 1, Math.floor(progress * TOTAL)));
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* Click nav */
+  navItems.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var i = parseInt(btn.getAttribute('data-howitworks-nav'), 10);
+      targetIndex = i;
+      setActive(i);
+    });
+  });
+
+  /* ── Modal ── */
+  var overlay   = document.getElementById('modalOverlay');
+  var modalInner = document.getElementById('modalInner');
+
+  function openModal(target) {
+    var tplId = 'tpl-' + target;
+    var tpl = document.getElementById(tplId);
+    if (!tpl) return;
+    modalInner.innerHTML = '';
+    modalInner.appendChild(tpl.content.cloneNode(true));
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  section.querySelectorAll('.howitworks__faq-item').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      openModal(btn.getAttribute('data-modal-target'));
+    });
+  });
+
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay || e.target.closest('[data-close]')) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+})();
+</script>
+
+</body>
+</html>

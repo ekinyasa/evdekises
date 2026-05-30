@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evdeki Ses — B Versiyonu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Instrument+Serif:ital@1&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/santral" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/e1dfb0da15bc47f4a472a6d1df9f45de?family=Santral-Medium" rel="stylesheet"
+    type="text/css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+    rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/0ad2586597c21107d38c9840d71b6841?family=F." rel="stylesheet"
+    type="text/css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f8f7f5;
+      color: #1a1a18;
+      font-family: 'Santral-Medium', 'Inter', system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .grot {
+      font-family: 'Bricolage Grotesque', 'Santral-Medium', system-ui, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ─── Nav ─── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+    }
+
+    .nav__logo img {
+      height: 26px;
+      width: auto;
+      display: block;
+    }
+
+    .nav__cta {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: #1a1a18;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid rgba(26, 26, 24, 0.22);
+      border-radius: 624px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav__cta:hover {
+      background: #1a1a18;
+      color: #f8f7f5;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      background-image: url('assets/uzunHero.jpg');
+      background-size: cover;
+      background-position: right top;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right,
+          rgba(248, 247, 245, 0.22) 0%,
+          rgba(248, 247, 245, 0.06) 40%,
+          transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 4rem 1rem 6rem;
+      max-width: min(46rem, 52vw);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      height: 85svh;
+      justify-content: space-between;
+    }
+
+    .hero__label {
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+
+      color: rgba(26, 26, 24, 1);
+      margin-bottom: 2rem;
+    }
+
+    /* Version B: declarative Inter headline */
+    .hero__pre-header {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 1);
+      font-weight: 300;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .hero__headline {
+      font-size: 3.75rem;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: #1a1a18;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero__headline .serif {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .hero__subheadline {
+      font-size: 3.75rem;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: rgba(26, 26, 24, 0.35);
+      margin-bottom: 2rem;
+    }
+
+    .hero__sub {
+      font-size: 1rem;
+      color: rgba(26, 26, 24, 0.6);
+      line-height: 1.75;
+      max-width: 26rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero__ctas {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1a1a18;
+      color: #f8f7f5;
+      border: 1px solid #1a1a18;
+      border-radius: 624px;
+      font-size: 0.875rem;
+      font-weight: 400;
+      padding: 0.75rem 1.5rem;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.8;
+    }
+
+    .btn-primary svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .btn-text-link {
+      font-size: 0.875rem;
+      color: rgba(26, 26, 24, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: color 0.15s;
+    }
+
+    .btn-text-link:hover {
+      color: #1a1a18;
+    }
+
+    /* ─── Quick strip ─── */
+    .quick-strip {
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+      border-bottom: 1px solid rgba(26, 26, 24, 0.1);
+      padding: 1.25rem 6rem;
+      background: #f8f7f5;
+    }
+
+    .quick-strip__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .qs-item {
+      font-size: 0.8125rem;
+      color: rgba(26, 26, 24, 0.5);
+      white-space: nowrap;
+    }
+
+    .qs-sep {
+      color: rgba(26, 26, 24, 0.18);
+    }
+
+    /* ─── Sections ─── */
+    .section {
+      padding: 7rem 6rem;
+    }
+
+    .section--tinted {
+      background: #f0ede8;
+    }
+
+    .section--dense {
+      padding: 5rem 6rem;
+    }
+
+    .section__inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .section-num {
+      font-size: 0.625rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(26, 26, 24, 1);
+      margin-bottom: 3.5rem;
+    }
+
+    /* ─── Generic text styles ─── */
+    .body-text {
+      font-size: 1.0625rem;
+      color: rgba(26, 26, 24, 0.65);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .body-text+.body-text {
+      margin-top: 1.375rem;
+    }
+
+    /* ─── Evdeki Ses Nedir ─── */
+    .ev-nedir-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .ev-nedir-title {
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: #1a1a18;
+      line-height: 1.2;
+    }
+
+    /* ─── Pain Point / Ayna — Version B: bullets primary ─── */
+    .pain-section-title {
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: #1a1a18;
+      line-height: 1.1;
+      margin-bottom: 2.5rem;
+    }
+
+    .pain-intro-para {
+      font-size: 1.0625rem;
+      color: rgba(26, 26, 24, 0.62);
+      line-height: 1.8;
+      font-weight: 300;
+      max-width: 52rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .pain-pause-b {
+      font-size: 1rem;
+      color: rgba(26, 26, 24, 0.45);
+      font-weight: 300;
+      margin-bottom: 0.25rem;
+    }
+
+    .pain-punch-b {
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: rgba(26, 26, 24, 0.78);
+      margin-bottom: 3.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* Version B: main grid for pain point — bullets left, rhythm right */
+    .pain-grid-b {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .rec-label-b {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(26, 26, 24, 0.35);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Version B: recognition items as bold rows */
+    .rec-list-b {
+      list-style: none;
+    }
+
+    .rec-list-b li {
+      padding: 0.875rem 0;
+      border-bottom: 1px solid rgba(26, 26, 24, 0.1);
+      font-size: 1rem;
+      color: #1a1a18;
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    .rec-list-b li:first-child {
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+    }
+
+    /* Version B: uyumlanma as secondary evidence block */
+    .rhythm-secondary-label {
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(26, 26, 24, 0.28);
+      margin-bottom: 1.25rem;
+    }
+
+    .uyumlanma-intro-b {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.52);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 0.875rem;
+    }
+
+    .biraz-items-b {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-left: 1rem;
+      border-left: 1px solid rgba(26, 26, 24, 0.1);
+      margin: 0.75rem 0;
+    }
+
+    .biraz-items-b span {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.45);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .uyumlanma-close-b {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.52);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-top: 0.875rem;
+    }
+
+    /* ─── Reframe — Version B: second para emphasized ─── */
+    .reframe-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .reframe-title {
+      font-size: 3rem;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: #1a1a18;
+      line-height: 1.05;
+      position: sticky;
+      top: 6rem;
+    }
+
+    .reframe-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .reframe-body p {
+      font-size: 1.0625rem;
+      color: rgba(26, 26, 24, 0.62);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* Version B: second paragraph gets higher contrast */
+    .reframe-body p.em {
+      color: rgba(26, 26, 24, 0.82);
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+    }
+
+    .reframe-evdeki {
+      margin-top: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .reframe-evdeki p {
+      font-size: 1.0625rem;
+      color: rgba(26, 26, 24, 0.65);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .inline-cta {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .inline-cta p {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.55);
+      font-weight: 300;
+    }
+
+    .inline-cta-link {
+      font-size: 0.9375rem;
+      color: #1a1a18;
+      font-weight: 400;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      white-space: nowrap;
+    }
+
+    .inline-cta-link:hover {
+      opacity: 0.65;
+    }
+
+    /* ─── Accordion / Program Flow — Version B: first open ─── */
+    .accordion-header {
+      margin-bottom: 0;
+    }
+
+    .accordion-title {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: #1a1a18;
+    }
+
+    .accordion {
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+      margin-top: 3rem;
+    }
+
+    .accordion__item {
+      border-bottom: 1px solid rgba(26, 26, 24, 0.1);
+    }
+
+    .accordion__trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.625rem 0;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      gap: 1.5rem;
+    }
+
+    .accordion__trigger:hover .accordion__label {
+      color: #1a1a18;
+    }
+
+    .accordion__trigger-left {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+    }
+
+    .accordion__num {
+      font-size: 0.6875rem;
+      font-variant-numeric: tabular-nums;
+      color: rgba(26, 26, 24, 0.28);
+      letter-spacing: 0.06em;
+      min-width: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .accordion__label {
+      font-size: 1rem;
+      color: rgba(26, 26, 24, 0.72);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      transition: color 0.2s;
+    }
+
+    .accordion__item.is-open .accordion__label {
+      color: #1a1a18;
+    }
+
+    .accordion__icon {
+      width: 1.125rem;
+      height: 1.125rem;
+      color: rgba(26, 26, 24, 0.3);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .accordion__item.is-open .accordion__icon {
+      transform: rotate(45deg);
+      color: #1a1a18;
+    }
+
+    .accordion__body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .accordion__item.is-open .accordion__body {
+      max-height: 800px;
+    }
+
+    .accordion__body-inner {
+      padding: 0 0 2.5rem 3.5rem;
+      max-width: 44rem;
+    }
+
+    .accordion__body-inner p {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.62);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+    }
+
+    .accordion__body-inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Version B: "Fark etmeye başladığın şey" as prominent highlight */
+    .fark-line-b {
+      margin-top: 1.5rem;
+      padding: 1.125rem 1.25rem;
+      background: rgba(26, 26, 24, 0.04);
+      border-left: 2px solid rgba(26, 26, 24, 0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .fark-label-b {
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(26, 26, 24, 0.35);
+    }
+
+    .fark-text-b {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.75);
+      line-height: 1.65;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── Format section — Version B: numbered ─── */
+    .format-header-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+
+    .format-header-title {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: #1a1a18;
+      line-height: 1.15;
+    }
+
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border: 1px solid rgba(26, 26, 24, 0.1);
+      background: rgba(26, 26, 24, 0.1);
+      gap: 1px;
+    }
+
+    .format-card {
+      background: #f8f7f5;
+      padding: 1.625rem 1.5rem;
+    }
+
+    .format-card--span {
+      grid-column: 1 / -1;
+    }
+
+    .format-card__num {
+      font-size: 0.625rem;
+      color: rgba(26, 26, 24, 0.28);
+      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .format-card__title {
+      font-size: 0.9375rem;
+      color: #1a1a18;
+      font-weight: 400;
+      margin-bottom: 0.375rem;
+    }
+
+    .format-card__desc {
+      font-size: 0.875rem;
+      color: rgba(26, 26, 24, 0.52);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    .format-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+
+    .format-cta p {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.55);
+    }
+
+    /* ─── Dönüşüm Hattı — Version B: rows for clarity ─── */
+    .donusum-section-head {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+
+    .donusum-section-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(26, 26, 24, 0.35);
+      margin-bottom: 1.5rem;
+    }
+
+    .donusum-lead {
+      font-size: 2.25rem;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: #1a1a18;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .donusum-sub {
+      font-size: 1.0625rem;
+      color: rgba(26, 26, 24, 0.55);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* Version B: items as prominent bordered rows */
+    .donusum-list-b {
+      list-style: none;
+    }
+
+    .donusum-list-b li {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(26, 26, 24, 0.1);
+      font-size: 1rem;
+      color: rgba(26, 26, 24, 0.75);
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    .donusum-list-b li:first-child {
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+    }
+
+    .donusum-close-b {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+      font-size: 1.125rem;
+      color: rgba(26, 26, 24, 0.72);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ─── Bu Alan Sana Göre Mi — Version B: clear direct ─── */
+    .who-page-title {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: #1a1a18;
+      margin-bottom: 1rem;
+    }
+
+    .who-page-intro {
+      font-size: 1.0625rem;
+      color: rgba(26, 26, 24, 0.55);
+      font-weight: 300;
+      margin-bottom: 3rem;
+      max-width: 36rem;
+    }
+
+    .who-for-grid {
+      max-width: 72rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .who-col-title {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: #1a1a18;
+      margin-bottom: 1.5rem;
+    }
+
+    .who-col--not .who-col-title {
+      color: rgba(26, 26, 24, 0.38);
+    }
+
+    .who-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .who-list li {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.68);
+      font-weight: 300;
+      line-height: 1.55;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(26, 26, 24, 0.08);
+    }
+
+    .who-list li:first-child {
+      border-top: 1px solid rgba(26, 26, 24, 0.08);
+    }
+
+    .who-col--not .who-list li {
+      color: rgba(26, 26, 24, 0.38);
+    }
+
+    .who-closing {
+      max-width: 72rem;
+      margin: 3rem 0 0;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+    }
+
+    .who-closing p {
+      font-size: 1.0625rem;
+      color: rgba(26, 26, 24, 0.65);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ─── Final CTA — Version B: direct, details prominent ─── */
+    .final-cta {
+      padding: 7rem 6rem;
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+    }
+
+    .final-cta__inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .final-cta__label {
+      font-size: 0.625rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(26, 26, 24, 0.32);
+      margin-bottom: 1.75rem;
+    }
+
+    .final-cta__headline {
+      font-size: 3rem;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: #1a1a18;
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+    }
+
+    .final-cta__program-desc {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.55);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .final-cta__details {
+      margin-bottom: 2.5rem;
+    }
+
+    .final-cta__detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.875rem 0;
+      border-bottom: 1px solid rgba(26, 26, 24, 0.08);
+      gap: 2rem;
+    }
+
+    .final-cta__detail-row:first-child {
+      border-top: 1px solid rgba(26, 26, 24, 0.08);
+    }
+
+    .final-cta__detail-key {
+      font-size: 0.875rem;
+      color: rgba(26, 26, 24, 0.42);
+    }
+
+    .final-cta__detail-val {
+      font-size: 0.875rem;
+      color: #1a1a18;
+      font-weight: 400;
+      text-align: right;
+    }
+
+    .final-cta__detail-val.price {
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+    }
+
+    .final-cta__next-period {
+      font-size: 0.8125rem;
+      color: rgba(26, 26, 24, 0.38);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .final-cta__closing {
+      font-size: 0.9375rem;
+      color: rgba(26, 26, 24, 0.55);
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ─── Editorial image block ─── */
+    .img-block {
+      width: 100%;
+      background: #e8e5df;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-block--lg {
+      height: 58vh;
+      min-height: 300px;
+    }
+
+    .img-block--md {
+      height: 44vh;
+      min-height: 220px;
+    }
+
+    .img-block__label {
+      font-size: 0.625rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(26, 26, 24, 0.18);
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      padding: 2rem 6rem;
+      border-top: 1px solid rgba(26, 26, 24, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-size: 0.75rem;
+      color: rgba(26, 26, 24, 0.3);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 960px) {
+      .hero {
+        min-height: 100svh;
+        background-position: 75% top;
+      }
+
+      .hero__content {
+        padding: 5rem 2rem 4rem 2rem;
+        max-width: 62%;
+      }
+
+      .hero__headline {
+        font-size: 2.75rem;
+      }
+
+      .hero__subheadline {
+        font-size: 2.75rem;
+      }
+
+      .section {
+        padding: 5rem 2rem;
+      }
+
+      .section--dense {
+        padding: 4rem 2rem;
+      }
+
+      .quick-strip {
+        padding: 1.25rem 2rem;
+      }
+
+      .ev-nedir-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .pain-grid-b {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .reframe-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .reframe-title {
+        font-size: 2.25rem;
+        position: static;
+      }
+
+      .donusum-section-head {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .who-for-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .format-header-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .final-cta {
+        padding: 5rem 2rem;
+      }
+
+      .final-cta__inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .final-cta__headline {
+        font-size: 2.25rem;
+      }
+
+      .accordion__body-inner {
+        padding: 0 1.5rem 2rem 3.5rem;
+      }
+
+      .nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .footer {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero__content {
+        max-width: 65%;
+      }
+
+      .hero__headline {
+        font-size: 2.25rem;
+      }
+
+      .hero__subheadline {
+        font-size: 2.25rem;
+      }
+
+      .format-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .qs-sep {
+        display: none;
+      }
+
+      .quick-strip__inner {
+        gap: 1.25rem;
+      }
+
+      .pain-section-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Nav ── -->
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <img src="assets/nilufer-ormanli-sutun-logo.svg" alt="Nilüfer Ormanlı" />
+    </a>
+    <!-- <a href="#basvuru" class="nav__cta">Başvuru Yap</a> -->
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+     BLOK 1 — HERO (Version B: declarative)
+═══════════════════════════════════════════ -->
+  <section class="hero">
+
+
+
+    <div class="hero__content">
+
+      <span>
+        <span class="hero__headline grot"
+          style="font-weight: 400;font-size: clamp(50px, 3.58vw, 53px);color: rgba(255,255,255,0.9);font-family: 'F.', Arial, sans-serif; letter-spacing: -.02em; font-size: 3.75rem; line-height: 1;display: inline; ">evdeki
+          ses</span>
+        <br>
+        <span class="hero__label"
+          style="color: rgb(255, 255, 255); display: inline;font-size: 14px;font-weight: bold;font-family: Santral-Medium;">
+          kadınlar için ses, temas<br>ve ifade yolculuğu
+        </span>
+      </span>
+
+      <span>
+        <span class="hero__label"
+          style="color: rgb(255, 255, 255); display: inline;font-size: 14px;font-weight: bold;font-family: Santral-Medium;">
+          Sesin var.<br>
+          Ama sen içinde misin?
+        </span><br><br>
+
+        <span class="hero__label" style="box-sizing: border-box;
+                      color: rgb(255, 255, 255);
+                      display: block;
+                      font-family: 'F.', Arial, sans-serif;
+                      font-size: 15.04832px;
+                      font-weight: 400;
+                      max-height: 44px;
+                      letter-spacing: -0.2px;
+                      line-height: 22.572481px;
+                      max-width: 458.921875px;
+                      -webkit-font-smoothing: antialiased;">
+          Konuşuyorsun. Paylaşıyorsun. Bazen güçlü de görünüyorsun.<br>
+          Ama bir yerin izliyor. Bir yerin ayarlıyor. Bir yerin henüz çıkmamış bir cümleyi içeride tutuyor.<br><br>
+        </span>
+        <span class="hero__label"
+          style="color: rgb(255, 255, 255); display: inline;font-size: 14px;font-weight: bold;font-family: Santral-Medium;">
+          Evdeki Ses, o yeri de duymak için.
+        </span>
+      </span>
+
+
+
+
+
+      <!-- Version B: two CTAs -->
+      <div class="hero__ctas">
+        <a href="#surec" class="btn-primary">
+          Süreci keşfet
+          <svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M1 5.5h9M6 2l3.5 3.5L6 9" />
+          </svg>
+        </a>
+        <a href="#basvuru" class="btn-text-link">
+          Başvuru formunu doldur →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     BLOK 1 — Evdeki Ses Nedir?
+═══════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section__inner">
+      <div class="ev-nedir-grid">
+
+        <div>
+          <h2 class="ev-nedir-title">Evdeki Ses nedir?</h2>
+        </div>
+
+        <div>
+          <p class="body-text">
+            İçinde bir ses, bir yön, bir cümle, bir yaratım ya da görünür olmayı bekleyen bir parça olduğunu
+            hissediyorsan — ama bunu zorlayarak, performansla ya da kendini düzeltme baskısıyla dışarı çağırmak
+            istemiyorsan,
+            bu süreç bunun için açıldı.
+          </p>
+          <p class="body-text" style="margin-top:1.375rem;">
+            Ses, beden ve ifade üzerine 5 haftalık canlı destekli bir süreç. 10 kişilik küçük grup. Çevrim içi. Türkçe.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Quick Strip ── -->
+  <div class="quick-strip">
+    <div class="quick-strip__inner">
+      <span class="qs-item">5 haftalık süreç</span>
+      <span class="qs-sep">·</span>
+      <span class="qs-item">10 kişilik küçük grup</span>
+      <span class="qs-sep">·</span>
+      <span class="qs-item">Canlı destekli</span>
+      <span class="qs-sep">·</span>
+      <span class="qs-item">Ses + beden + ifade</span>
+      <span class="qs-sep">·</span>
+      <span class="qs-item">Çevrim içi</span>
+      <span class="qs-sep">·</span>
+      <span class="qs-item">Türkçe</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     BLOK 2 — PAIN POINT / AYNA (Version B: bullets primary)
+═══════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section__inner">
+      <p class="section-num">01 — Ayna</p>
+
+      <h2 class="pain-section-title">Bir cümle söylemeden önce kaç adım atıyorsun?</h2>
+
+      <!-- Version B: intro paragraph full, then pause lines -->
+      <p class="pain-intro-para">
+        Ortamı ölçüyorsun. Tepkiyi tahmin ediyorsun. Cümleyi yumuşatıyorsun. Sesini ayarlıyorsun. Kendini daha kolay
+        alınabilir bir hâle getiriyorsun.
+      </p>
+      <p class="pain-pause-b">Sonra cümle çıkıyor.</p>
+      <p class="pain-punch-b">Ama tam içinden çıkmıyor.</p>
+
+      <!-- Version B: two-column grid with bullets LEFT (primary), rhythm RIGHT (secondary) -->
+      <div class="pain-grid-b">
+
+        <div>
+          <!-- Version B: recognition items as primary, prominent bordered rows -->
+          <p class="rec-label-b">Belki şunu tanıyorsun</p>
+          <ul class="rec-list-b">
+            <li>"Hayır" dedikten sonra hemen açıklama ekliyorsun.</li>
+            <li>Bir odada yer kaplamak istiyorsun ama bedenin geri çekiliyor.</li>
+            <li>Sesin bazı insanların yanında başka birine ait gibi çıkıyor.</li>
+            <li>Bir şey paylaşıyorsun, sonra içeride bir yer pişman oluyor.</li>
+            <li>Canlı, hafif, temas eden tarafını özlüyorsun.</li>
+          </ul>
+        </div>
+
+        <div>
+          <!-- Version B: uyumlanma block as secondary evidence -->
+          <p class="rhythm-secondary-label">Her gün böyle</p>
+          <p class="uyumlanma-intro-b">
+            Bu sadece bir iletişim alışkanlığı değil.<br>
+            Çoğu kadının sesi susarak kaybolmaz. Uyumlanarak incelir.
+          </p>
+          <div class="biraz-items-b">
+            <span>Biraz daha tatlı.</span>
+            <span>Biraz daha anlayışlı.</span>
+            <span>Biraz daha az talepkâr.</span>
+            <span>Biraz daha spiritüel.</span>
+            <span>Biraz daha makul.</span>
+          </div>
+          <p class="uyumlanma-close-b">
+            Ve bir gün fark edersin: Sesin var. Ama rezonansın tam orada değil.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Editorial image ── -->
+  <div class="img-block img-block--lg">
+    <span class="img-block__label">Fotoğraf</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     BLOK 3 — REFRAME (Version B: second para emphasized)
+═══════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section__inner">
+      <p class="section-num">02 — Çerçeve</p>
+
+      <div class="reframe-inner">
+
+        <div>
+          <h2 class="reframe-title">Bu bir ses problemi değil.</h2>
+        </div>
+
+        <div class="reframe-body">
+          <p>
+            Sesin neden sıkıştığını anlamak için boğaza bakmak yeterli değil.
+            Bedenin görünürlük karşısında nasıl organize olduğuna bakmak gerekiyor. İlişki içinde ne yaptığına. İzin
+            isterken, hayır derken, görünür olurken sistemin nasıl kapandığına.
+          </p>
+          <p>
+            Çoğu kadın sesini kaybetmez.
+            Onu hayatta kalmak için inceltir, yumuşatır, saklar, parlatır, kontrol eder.
+            Ve bu çok mantıklı bir şeydi — bir noktaya kadar.
+          </p>
+          <!-- Version B: this paragraph gets higher contrast — the "why it matters now" -->
+          <p class="em">
+            Ama aynı organizasyon şimdi seni konuşurken yavaşlatıyor. Yaratırken durduruyor. Görünür olurken küçültüyor.
+            Temas ederken kapatıyor.
+          </p>
+
+          <div class="reframe-evdeki">
+            <p>
+              Evdeki Ses burada başlar.
+              Sesi zorlamadan önce — sesin nerede tutulduğunu görmekle.
+              Zemine inmekle. Örüntüyü fark etmekle. Gerçek cümleye yaklaşmakla. Ve onu küçük ama gerçek bir adıma
+              taşımakla.
+            </p>
+            <p>
+              Beş hafta boyunca bu hat, her hafta farklı bir katmandan geçer.
+            </p>
+          </div>
+
+          <!-- Inline CTAs from BLOK 3 -->
+          <div class="inline-cta">
+            <p>Başvuru formu açık. On kadınla sınırlı.</p>
+            <a href="#basvuru" class="inline-cta-link">→ Forma göz at</a>
+          </div>
+          <div class="inline-cta" style="margin-top: 0.75rem;">
+            <p>Henüz emin değil misin? Sesin nerede tutulduğunu önce kendin keşfet.</p>
+            <a href="#" class="inline-cta-link">→ Ücretsiz analizi başlat</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     BLOK 4 — PROGRAM AKIŞI (Version B: first item open)
+═══════════════════════════════════════════ -->
+  <section class="section section--tinted" id="surec">
+    <div class="section__inner">
+      <p class="section-num">03 — Program akışı</p>
+
+      <div class="accordion-header">
+        <h2 class="accordion-title">Beş haftalık yolculuk.</h2>
+      </div>
+
+      <!-- Version B: first item pre-opened -->
+      <div class="accordion" id="accordion">
+
+        <!-- Hazırlık Alanı — pre-opened in B -->
+        <div class="accordion__item is-open">
+          <button type="button" class="accordion__trigger">
+            <div class="accordion__trigger-left">
+              <span class="accordion__num">00</span>
+              <span class="accordion__label">Hazırlık Alanı</span>
+            </div>
+            <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round">
+              <path d="M10 4v12M4 10h12" />
+            </svg>
+          </button>
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <p>Hızlı gelip hızlı başlamıyoruz.</p>
+              <p>Programın ilk kapısı yavaş açılıyor. Sistemin ritmine bakıyoruz — nerede hızlanıyor, nerede donuyor,
+                nerede izin istiyor.</p>
+              <p>İlk ses buradan çıkıyor. Hazırlanmak için değil. Temas kurmak için.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hafta 1 -->
+        <div class="accordion__item">
+          <button type="button" class="accordion__trigger">
+            <div class="accordion__trigger-left">
+              <span class="accordion__num">01</span>
+              <span class="accordion__label">Hafta 1 — Zemin</span>
+            </div>
+            <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round">
+              <path d="M10 4v12M4 10h12" />
+            </svg>
+          </button>
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <p>Sesin çıkması için önce bedenin nerede olduğuna bakıyoruz.</p>
+              <p>Konuşurken hızlanan yer. Görünür olunca küçülen yer. Kendini terk eden yer.</p>
+              <p>Bunlar ses problemi değil. Hayatta kalma organizasyonu.</p>
+              <p>Bu hafta zemini dinliyoruz.</p>
+              <!-- Version B: "Fark" as prominent highlight block -->
+              <div class="fark-line-b">
+                <span class="fark-label-b">Fark etmeye başladığın şey</span>
+                <span class="fark-text-b">Ses sadece boğazdan çıkmıyor. Bir organizasyondan çıkıyor.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hafta 2 -->
+        <div class="accordion__item">
+          <button type="button" class="accordion__trigger">
+            <div class="accordion__trigger-left">
+              <span class="accordion__num">02</span>
+              <span class="accordion__label">Hafta 2 — Akış</span>
+            </div>
+            <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round">
+              <path d="M10 4v12M4 10h12" />
+            </svg>
+          </button>
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <p>Zemin bulduktan sonra soru değişiyor: Sistem hareket edebiliyor mu?</p>
+              <p>Gerçekten ne istiyorsun? Sesini kime göre ayarlıyorsun? Otomatik "evet"lerin altında ne var?</p>
+              <p>Arzuyla çalışıyoruz bu hafta. Ama kendini kaybetmeden.</p>
+              <div class="fark-line-b">
+                <span class="fark-label-b">Fark etmeye başladığın şey</span>
+                <span class="fark-text-b">Hareket ederken, hissederken, isterken kendimde kalabiliyor muyum?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hafta 3 -->
+        <div class="accordion__item">
+          <button type="button" class="accordion__trigger">
+            <div class="accordion__trigger-left">
+              <span class="accordion__num">03</span>
+              <span class="accordion__label">Hafta 3 — Görünürlük</span>
+            </div>
+            <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round">
+              <path d="M10 4v12M4 10h12" />
+            </svg>
+          </button>
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <p>Birçok kadın görünür olmak istiyor. Ama aynı anda etkisinden korkuyor.</p>
+              <p>Ses yükselmeden önce içeride ne oluyor? Güç mü üretiyor, baskı mı? Netlik mi kuruyor, kendini mi
+                kanıtlıyor?</p>
+              <p>Bu hafta sesin gücüyle çalışıyoruz. Saldırmadan. Küçülmeden.</p>
+              <div class="fark-line-b">
+                <span class="fark-label-b">Fark etmeye başladığın şey</span>
+                <span class="fark-text-b">Etkimi küçültmeden, performansa kaçmadan kendimde kalabiliyor muyum?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hafta 4 -->
+        <div class="accordion__item">
+          <button type="button" class="accordion__trigger">
+            <div class="accordion__trigger-left">
+              <span class="accordion__num">04</span>
+              <span class="accordion__label">Hafta 4 — Temas</span>
+            </div>
+            <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round">
+              <path d="M10 4v12M4 10h12" />
+            </svg>
+          </button>
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <p>Görünür olmak bir şey. Görünürken açık kalmak başka bir şey.</p>
+              <p>Gerçekten dinliyor musun? Duyulurken kapanmadan kalabiliyor musun? Sesin sadece ifade ediyor mu, yoksa
+                temas da kurabiliyor mu?</p>
+              <div class="fark-line-b">
+                <span class="fark-label-b">Fark etmeye başladığın şey</span>
+                <span class="fark-text-b">Görünür olurken, etkilenirken, ilişki kurarken kendimde kalabiliyor
+                  muyum?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hafta 5 -->
+        <div class="accordion__item">
+          <button type="button" class="accordion__trigger">
+            <div class="accordion__trigger-left">
+              <span class="accordion__num">05</span>
+              <span class="accordion__label">Hafta 5 — Canlı Ses</span>
+            </div>
+            <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round">
+              <path d="M10 4v12M4 10h12" />
+            </svg>
+          </button>
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <p>Buraya kadar sistemin nasıl organize olduğunu gördün. Zemini buldun. Akışı hissettin. Görünür oldun.
+                Temas kurdun.</p>
+              <p>Şimdi ses biraz daha serbest. Biraz daha geçirgen. Biraz daha sana ait.</p>
+              <p>Hayatta kalma sesi, uyumlanma sesi, performans sesi — bunların altında ne var?</p>
+              <div class="fark-line-b">
+                <span class="fark-label-b">Fark etmeye başladığın şey</span>
+                <span class="fark-text-b">Sesim biraz daha canlı. Biraz daha gerçek zamanlı. Biraz daha benim.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Editorial image ── -->
+  <div class="img-block img-block--md">
+    <span class="img-block__label">Fotoğraf</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     BLOK 5 — FORMAT ZENGİNLİĞİ (Version B: numbered)
+═══════════════════════════════════════════ -->
+  <section class="section" id="format">
+    <div class="section__inner">
+      <p class="section-num">04 — Her hafta seni bekleyenler</p>
+
+      <div class="format-header-grid">
+        <div>
+          <h2 class="format-header-title">Her hafta seni bekleyenler:</h2>
+        </div>
+      </div>
+
+      <!-- Version B: numbered cards -->
+      <div class="format-grid">
+        <div class="format-card">
+          <span class="format-card__num">01</span>
+          <p class="format-card__title">Canlı grup buluşması</p>
+          <p class="format-card__desc">Sesin başka seslerle temas kurduğu alan.</p>
+        </div>
+        <div class="format-card">
+          <span class="format-card__num">02</span>
+          <p class="format-card__title">Haftalık tema videosu</p>
+          <p class="format-card__desc">O haftanın odağını ve neden önemli olduğunu açar.</p>
+        </div>
+        <div class="format-card">
+          <span class="format-card__num">03</span>
+          <p class="format-card__title">Rehberli uygulama videoları</p>
+          <p class="format-card__desc">Ses, nefes, hareket ve ritim üzerinden ilerleyen pratikler.</p>
+        </div>
+        <div class="format-card">
+          <span class="format-card__num">04</span>
+          <p class="format-card__title">Sesli pratik kayıtları</p>
+          <p class="format-card__desc">Yalnız başına, kendi hızında çalışabileceğin rehberli sesler.</p>
+        </div>
+        <div class="format-card">
+          <span class="format-card__num">05</span>
+          <p class="format-card__title">Haftalık çalışma dosyası</p>
+          <p class="format-card__desc">Gördüğünü hayatında görmen için sorular ve gözlem alanları.</p>
+        </div>
+        <div class="format-card">
+          <span class="format-card__num">06</span>
+          <p class="format-card__title">Günlük hayat pratikleri</p>
+          <p class="format-card__desc">Çalışmayı gerçek konuşmalara ve anlara taşır.</p>
+        </div>
+        <div class="format-card format-card--span">
+          <span class="format-card__num">07</span>
+          <p class="format-card__title">Entegrasyon kaydı</p>
+          <p class="format-card__desc">Haftayı sindirmek, bedene dönmek ve kapatmak için.</p>
+        </div>
+      </div>
+
+      <!-- Format inline CTA -->
+      <div class="format-cta">
+        <p>Bu format sana göre hissettiriyorsa —</p>
+        <a href="#basvuru" class="inline-cta-link">→ Başvuru formunu doldur</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     BLOK 6 — DÖNÜŞÜM HATTI (Version B: items as clear rows)
+═══════════════════════════════════════════ -->
+  <section class="section section--tinted">
+    <div class="section__inner">
+      <p class="section-num">05 — Dönüşüm hattı</p>
+
+      <div class="donusum-section-head">
+        <div>
+          <h2 class="donusum-lead">Bu program boyunca ne değişir?</h2>
+          <p class="donusum-sub">
+            Büyük vaatler vermeyeceğim.<br>
+            Ama sistemin şunu taşımaya başlayabilir:
+          </p>
+        </div>
+      </div>
+
+      <!-- Version B: items as clearly readable bordered rows -->
+      <ul class="donusum-list-b">
+        <li>Fazla açıklamanın arkasında kaybolan gerçek cümleyi duymak.</li>
+        <li>Kamera, ilişki, üretim ya da sahne gibi alanlarda kapandığında ne yaptığını fark etmek.</li>
+        <li>"Daha hazır değilsin", "bunu kim dinler", "çok fazla" gibi iç cümlelerin nereden geldiğini tanımak.</li>
+        <li>İçinde kalan arzuyu, yönü ya da isteği küçük ve gerçek bir ifade adımına yaklaştırmak.</li>
+        <li>Birinin seni gerçekten duyduğu anda kaçmadan kalmak.</li>
+      </ul>
+
+      <p class="donusum-close-b">
+        Sesin değiştiğinde sadece sesin değişmez.<br>
+        Kendinle, ötekiyle ve yaşamla temas kurma biçimin değişmeye başlar.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ── Editorial image ── -->
+  <div class="img-block img-block--lg">
+    <span class="img-block__label">Fotoğraf</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     BLOK 7 — BU ALAN SANA GÖRE Mİ (Version B: clear direct)
+═══════════════════════════════════════════ -->
+  <section class="section" id="kime-gore">
+    <div class="section__inner">
+      <p class="section-num">06 — Bu alan sana göre mi?</p>
+
+      <!-- Version B: direct framing, title + intro text upfront -->
+      <h2 class="who-page-title">Muhtemelen bunu biliyorsun zaten.</h2>
+      <p class="who-page-intro">Kendi isteğini dile getirirken bile karşı tarafı kırmamaya çalışıyorsun. Söyleyeceğin
+        şeyi söylemeden önce fazla düşünüyorsun.</p>
+
+      <div class="who-for-grid">
+
+        <div class="who-col">
+          <h3 class="who-col-title">Bu alana dahil olabilirsin</h3>
+          <ul class="who-list">
+            <li>Söyleyeceğin şeyi söylemeden önce fazla düşünüyorsun.</li>
+            <li>Kendi isteğini dile getirirken bile karşı tarafı kırmamaya çalışıyorsun.</li>
+            <li>Bir odada yer kaplamak istiyorsun ama bedenin geri çekiliyor.</li>
+            <li>Canlı, hafif, temas eden tarafını özlüyorsun.</li>
+            <li>Kendi sesini sadece duymak değil, taşımak istiyorsun.</li>
+          </ul>
+        </div>
+
+        <div class="who-col who-col--not">
+          <h3 class="who-col-title">Bu alan sana göre olmayabilir, eğer:</h3>
+          <ul class="who-list">
+            <li>Hızlı bir özgüven formülü arıyorsan.</li>
+            <li>Sadece teknik ses egzersizi istiyorsan.</li>
+            <li>Kendi bedensel ve ilişkisel reflekslerine bakmak istemiyorsan.</li>
+            <li>Canlı grup içinde görünür olmayı hiç istemiyorsan.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="who-closing">
+        <p>Burada cilalı bir persona kurmuyoruz. Daha gerçek bir alan kuruyoruz.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     BLOK 8 — KURUCU GRUP / FİYAT / CTA (Version B: details prominent)
+═══════════════════════════════════════════ -->
+  <section class="final-cta" id="basvuru">
+    <div class="final-cta__inner">
+
+      <div>
+        <p class="final-cta__label">İlk grup on kadınla açılıyor.</p>
+        <!-- Version B: direct Inter headline -->
+        <h2 class="final-cta__headline">Kendi sesini taşıyacak alanı kurmaya hazırsan —</h2>
+        <p class="final-cta__program-desc">
+          Bu program ilk kez bu formatta açılıyor. Küçük tutulmasının nedeni basit: Bu çalışma ancak gerçek temas mümkün
+          olduğunda işe yarıyor.
+        </p>
+      </div>
+
+      <div>
+        <!-- Version B: price is visually prominent -->
+        <div class="final-cta__details">
+          <div class="final-cta__detail-row">
+            <span class="final-cta__detail-key">Kontenjan</span>
+            <span class="final-cta__detail-val">10 kadın</span>
+          </div>
+          <div class="final-cta__detail-row">
+            <span class="final-cta__detail-key">Süre</span>
+            <span class="final-cta__detail-val">Hazırlık alanı + 5 hafta</span>
+          </div>
+          <div class="final-cta__detail-row">
+            <span class="final-cta__detail-key">Format</span>
+            <span class="final-cta__detail-val">Çevrim içi, canlı küçük grup</span>
+          </div>
+          <div class="final-cta__detail-row">
+            <span class="final-cta__detail-key">Katılım bedeli</span>
+            <span class="final-cta__detail-val price">12.000 TL</span>
+          </div>
+        </div>
+
+        <p class="final-cta__next-period">
+          Sonraki dönemlerde program daha geniş bir grupla ve güncellenmiş fiyatla açılacak.
+        </p>
+
+        <p class="final-cta__closing">Kendi sesini taşıyacak alanı kurmaya hazırsan —</p>
+
+        <a href="#" class="btn-primary">
+          → Başvuru formunu doldur
+          <svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M1 5.5h9M6 2l3.5 3.5L6 9" />
+          </svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <span class="footer__copy">© Nilüfer Ormanlı · Evdeki Ses</span>
+    <a href="editorial-a.html" style="font-size:0.75rem;color:rgba(26,26,24,0.3);">← A versiyonunu gör</a>
+  </footer>
+
+  <!-- ─── Accordion JS ─── -->
+  <script>
+    (function () {
+      var items = document.querySelectorAll('.accordion__item');
+      items.forEach(function (item) {
+        var trigger = item.querySelector('.accordion__trigger');
+        trigger.addEventListener('click', function () {
+          var isOpen = item.classList.contains('is-open');
+          items.forEach(function (el) { el.classList.remove('is-open'); });
+          if (!isOpen) item.classList.add('is-open');
+        });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
