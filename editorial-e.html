@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evdeki Ses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/santral" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/e1dfb0da15bc47f4a472a6d1df9f45de?family=Santral-Medium" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: #f8f7f5;
+      color: #1a1a18;
+      font-family: 'Santral-Medium', 'Inter', system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .grot { font-family: 'Bricolage Grotesque', 'Santral-Medium', system-ui, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ─── Nav — identical to editorial-d ─── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 9999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3rem;
+    }
+    .nav__logo img { height: 26px; width: auto; display: block; }
+    .nav__cta { display: none;
+      font-size: 0.8125rem; font-weight: 400; color: #1a1a18;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid rgba(26,26,24,0.22); border-radius: 624px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav__cta:hover { background: #1a1a18; color: #f8f7f5; }
+
+    /* ─── Hero — LOCKED, identical to editorial-d ─── */
+    .hero {
+      position: relative;
+      min-height: 101svh;
+      background-image: url('assets/duvar-1920.jpg');
+      background-size: cover;
+      background-position: right bottom;
+      background-repeat: no-repeat;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right,
+        rgba(248,247,245,0.18) 0%,
+        rgba(248,247,245,0.05) 42%,
+        transparent 62%
+      );
+      pointer-events: none; z-index: 1;
+    }
+    .hero__content {
+      position: relative; z-index: 2;
+      padding: 4rem 4rem 1rem 6rem;
+      max-width: min(46rem, 52vw);
+      display: flex; flex-direction: column;
+      gap: 0;
+      height: 100svh;
+      justify-content: space-between;
+    }
+    .hero__text-svg {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      display: block;
+    }
+    .hero__infobar-svg {
+      width: 538px;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+      margin-left: -37px;
+    }
+
+    /* ─── Sections ─── */
+    .section { padding: 7rem 6rem; }
+    .section--tinted { background: #f0ede8; }
+    .section--dense { padding: 5rem 6rem; }
+    .section__inner { max-width: 72rem; margin: 0 auto; }
+    .section-num {
+      font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(26,26,24,1); margin-bottom: 3.5rem;
+    }
+    .section-rule {
+      border: none; border-top: 1px solid rgba(26,26,24,0.1);
+      margin: 3.5rem 0;
+    }
+
+    /* ─── Buttons ─── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #1a1a18; color: #f8f7f5;
+      border: 1px solid #1a1a18; border-radius: 624px;
+      font-size: 0.875rem; font-weight: 400;
+      padding: 0.75rem 1.5rem;
+      transition: opacity 0.15s; white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: 0.8; }
+    .btn-primary svg { width: 11px; height: 11px; }
+
+    /* ─── Inline CTA ─── */
+    .inline-cta {
+      display: flex; align-items: baseline; gap: 0.75rem;
+      margin-top: 2rem; flex-wrap: wrap;
+    }
+    .inline-cta p { font-size: 0.9375rem; color: rgba(26,26,24,0.55); font-weight: 300; }
+    .inline-cta-link {
+      font-size: 0.9375rem; color: #1a1a18; font-weight: 400;
+      text-decoration: underline; text-underline-offset: 3px;
+      white-space: nowrap;
+    }
+    .inline-cta-link:hover { opacity: 0.65; }
+
+    /* ─── Body text ─── */
+    .body-p {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.65);
+      line-height: 1.8; font-weight: 300;
+    }
+    .body-p + .body-p { margin-top: 1.375rem; }
+
+    /* ═══════════════════════════════════════
+       EVDEKİ SES NEDİR?
+    ═══════════════════════════════════════ */
+    .ev-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem; align-items: start;
+    }
+    .ev-sticky-label {
+      font-size: 1.5rem; font-weight: 300;
+      letter-spacing: -0.025em; color: #1a1a18;
+      position: sticky; top: 6rem; line-height: 1.2;
+    }
+    .ev-body { max-width: 44rem; }
+    .ev-body > * + * { margin-top: 1.5rem; }
+    .ev-opening {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.65);
+      line-height: 1.8; font-weight: 300;
+    }
+    .ev-opening-close {
+      font-size: 1.125rem; font-weight: 400;
+      color: #1a1a18; letter-spacing: -0.01em;
+      margin-top: 0.375rem;
+    }
+    .ev-not-vokal {
+      font-size: 1rem; color: rgba(26,26,24,0.55);
+      font-weight: 300; line-height: 1.75; font-style: italic;
+    }
+    .ev-ses-core {
+      font-size: 1.125rem; font-weight: 400;
+      color: rgba(26,26,24,0.78); letter-spacing: -0.01em;
+      line-height: 1.45; margin-bottom: 0.375rem;
+    }
+    .ev-ses-change {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.58);
+      font-weight: 300; line-height: 1.8;
+    }
+    .ev-facts {
+      padding-top: 2rem; border-top: 1px solid rgba(26,26,24,0.1);
+    }
+    .ev-facts p {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.6);
+      line-height: 1.8; font-weight: 300;
+    }
+    .ev-facts p + p { margin-top: 0.375rem; }
+
+    /* ═══════════════════════════════════════
+       PAIN POINT
+    ═══════════════════════════════════════ */
+    .pain-title {
+      font-size: 2.25rem; font-weight: 300;
+      letter-spacing: -0.025em; color: #1a1a18;
+      margin-bottom: 3rem; line-height: 1.15;
+    }
+    .pain-list { list-style: none; max-width: 56rem; }
+    .pain-list li {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(26,26,24,0.1);
+      font-size: 1.0625rem; color: rgba(26,26,24,0.72);
+      font-weight: 300; line-height: 1.55;
+    }
+    .pain-list li:first-child { border-top: 1px solid rgba(26,26,24,0.1); }
+
+    /* ═══════════════════════════════════════
+       REFRAME
+    ═══════════════════════════════════════ */
+    .reframe-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem; align-items: start;
+    }
+    .reframe-title {
+      font-size: 2.5rem; font-weight: 300;
+      letter-spacing: -0.03em; color: #1a1a18;
+      line-height: 1.1;
+      position: sticky; top: 6rem;
+    }
+    .reframe-body { display: flex; flex-direction: column; gap: 0; }
+    .reframe-body > * + * { margin-top: 1.5rem; }
+    .rf-intro {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.65);
+      line-height: 1.8; font-weight: 300;
+    }
+    .rf-learned {
+      list-style: none;
+      padding-left: 1.25rem;
+      border-left: 1px solid rgba(26,26,24,0.15);
+    }
+    .rf-learned li {
+      font-size: 1rem; color: rgba(26,26,24,0.5);
+      font-weight: 300; font-style: italic; line-height: 1.8;
+    }
+    .rf-automatic {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.65);
+      line-height: 1.8; font-weight: 300;
+    }
+    .rf-physical {
+      padding: 1.25rem 1.25rem;
+      border-left: 2px solid rgba(26,26,24,0.12);
+    }
+    .rf-physical-trigger {
+      font-size: 1rem; color: rgba(26,26,24,0.55);
+      font-weight: 300; margin-bottom: 0.5rem;
+    }
+    .rf-physical-items { display: flex; flex-direction: column; gap: 0.125rem; }
+    .rf-physical-items span {
+      font-size: 0.9375rem; color: rgba(26,26,24,0.42);
+      font-style: italic; line-height: 1.7;
+    }
+    .rf-karakter {
+      font-size: 1.125rem; font-weight: 400;
+      color: rgba(26,26,24,0.82); letter-spacing: -0.01em;
+      margin-bottom: 0.25rem;
+    }
+    .rf-korunma {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.62);
+      line-height: 1.8; font-weight: 300;
+    }
+    .rf-reflex-intro {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.65);
+      font-weight: 300; margin-bottom: 0.625rem;
+    }
+    .rf-reflex-list { list-style: none; }
+    .rf-reflex-list li {
+      padding: 0.375rem 0 0.375rem 1rem;
+      font-size: 0.9375rem; color: rgba(26,26,24,0.58);
+      font-weight: 300; line-height: 1.65; position: relative;
+    }
+    .rf-reflex-list li::before {
+      content: '·'; position: absolute; left: 0; color: rgba(26,26,24,0.28);
+    }
+    /* Questions block */
+    .rf-questions-block { padding-top: 0.5rem; }
+    .rf-question-para {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.55);
+      line-height: 1.8; font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .rf-anchor {
+      font-size: 1.375rem; font-weight: 400;
+      color: #1a1a18; letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+    .rf-explain {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.62);
+      line-height: 1.8; font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .rf-beş-hafta {
+      font-size: 1rem; color: rgba(26,26,24,0.5);
+      line-height: 1.8; font-weight: 300;
+    }
+
+    /* ═══════════════════════════════════════
+       PROGRAM AKIŞI — accordion
+    ═══════════════════════════════════════ */
+    .accordion-title {
+      font-size: 2rem; font-weight: 300;
+      letter-spacing: -0.025em; color: #1a1a18;
+      margin-bottom: 0;
+    }
+    .accordion {
+      border-top: 1px solid rgba(26,26,24,0.1);
+      margin-top: 3rem;
+    }
+    .accordion__item { border-bottom: 1px solid rgba(26,26,24,0.1); }
+    .accordion__trigger {
+      width: 100%; display: flex; justify-content: space-between;
+      align-items: center; padding: 1.625rem 0;
+      text-align: left; background: none; border: none;
+      cursor: pointer; gap: 1.5rem;
+    }
+    .accordion__trigger:hover .accordion__label { color: #1a1a18; }
+    .accordion__trigger-left { display: flex; align-items: baseline; gap: 2rem; }
+    .accordion__num {
+      font-size: 0.6875rem; font-variant-numeric: tabular-nums;
+      color: rgba(26,26,24,0.28); letter-spacing: 0.06em;
+      min-width: 1.5rem; flex-shrink: 0;
+    }
+    .accordion__label {
+      font-size: 1rem; color: rgba(26,26,24,0.72);
+      font-weight: 400; letter-spacing: -0.01em; transition: color 0.2s;
+    }
+    .accordion__item.is-open .accordion__label { color: #1a1a18; }
+    .accordion__icon {
+      width: 1.125rem; height: 1.125rem; color: rgba(26,26,24,0.3);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), color 0.2s;
+      flex-shrink: 0;
+    }
+    .accordion__item.is-open .accordion__icon { transform: rotate(45deg); color: #1a1a18; }
+    .accordion__body {
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1);
+    }
+    .accordion__item.is-open .accordion__body { max-height: 1400px; }
+    .accordion__body-inner { padding: 0 0 2.5rem 3.5rem; max-width: 44rem; }
+    .acc-p {
+      font-size: 0.9375rem; color: rgba(26,26,24,0.62);
+      line-height: 1.8; font-weight: 300; margin-bottom: 0.875rem;
+    }
+    .acc-p:last-child { margin-bottom: 0; }
+    .acc-q-list { list-style: none; margin: 0.625rem 0 1rem; }
+    .acc-q-list li {
+      padding: 0.3rem 0 0.3rem 1rem;
+      font-size: 0.9375rem; color: rgba(26,26,24,0.52);
+      font-weight: 300; line-height: 1.7; position: relative;
+    }
+    .acc-q-list li::before {
+      content: '·'; position: absolute; left: 0; color: rgba(26,26,24,0.28);
+    }
+    .acc-amac { font-size: 0.9375rem; color: rgba(26,26,24,0.42); font-weight: 300; margin-bottom: 0.25rem; }
+    .acc-amac-val {
+      font-size: 0.9375rem; color: rgba(26,26,24,0.65);
+      font-style: italic; font-weight: 300; margin-bottom: 0.875rem;
+    }
+    /* "Hafta sonunda açılan şey" insight — new in this manuscript */
+    .hafta-insight {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: rgba(26,26,24,0.035);
+      border-left: 2px solid rgba(26,26,24,0.15);
+    }
+    .hafta-insight__label {
+      font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(26,26,24,0.32); margin-bottom: 0.375rem; display: block;
+    }
+    .hafta-insight__text {
+      font-size: 0.9375rem; color: rgba(26,26,24,0.72);
+      font-weight: 400; letter-spacing: -0.01em; font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════
+       HER HAFTA SENİ BEKLEYENLER
+    ═══════════════════════════════════════ */
+    .haftalik-intro {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.6);
+      line-height: 1.8; font-weight: 300;
+      max-width: 44rem; margin-bottom: 3rem;
+    }
+    .haftalik-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid rgba(26,26,24,0.1);
+      background: rgba(26,26,24,0.1);
+    }
+    .haftalik-card { background: #f8f7f5; padding: 1.75rem 1.5rem; }
+    .haftalik-card__icon { font-size: 1.125rem; margin-bottom: 0.875rem; display: block; }
+    .haftalik-card__title {
+      font-size: 0.9375rem; color: #1a1a18;
+      font-weight: 400; margin-bottom: 0.375rem;
+    }
+    .haftalik-card__desc {
+      font-size: 0.875rem; color: rgba(26,26,24,0.52);
+      font-weight: 300; line-height: 1.55;
+    }
+    .haftalik-cta {
+      margin-top: 2.5rem; display: flex; align-items: baseline; gap: 0.75rem;
+    }
+    .haftalik-cta p { font-size: 0.9375rem; color: rgba(26,26,24,0.55); }
+
+    /* ═══════════════════════════════════════
+       BU SÜREÇTEKİ NE DEĞİŞEBİLİR?
+    ═══════════════════════════════════════ */
+    .degisir-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem; align-items: start;
+    }
+    .degisir-title {
+      font-size: 2rem; font-weight: 300;
+      letter-spacing: -0.025em; color: #1a1a18;
+      margin-bottom: 1rem;
+    }
+    .degisir-framing {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.55);
+      font-weight: 300; line-height: 1.8;
+    }
+    .degisir-right { display: flex; flex-direction: column; gap: 0; }
+    .degisir-preamble {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.62);
+      line-height: 1.8; font-weight: 300; margin-bottom: 1.25rem;
+    }
+    .degisir-capacity {
+      font-size: 1rem; color: rgba(26,26,24,0.48);
+      font-weight: 300; margin-bottom: 1rem;
+    }
+    .degisir-list { list-style: none; margin-bottom: 2rem; }
+    .degisir-list li {
+      padding: 0.875rem 0 0.875rem 1.25rem;
+      border-bottom: 1px solid rgba(26,26,24,0.08);
+      font-size: 1rem; color: rgba(26,26,24,0.72);
+      font-weight: 300; line-height: 1.6; position: relative;
+    }
+    .degisir-list li:first-child { border-top: 1px solid rgba(26,26,24,0.08); }
+    .degisir-list li::before {
+      content: '·'; position: absolute; left: 0; top: 0.875rem;
+      color: rgba(26,26,24,0.3);
+    }
+    .degisir-mid {
+      font-size: 1rem; color: rgba(26,26,24,0.45);
+      font-weight: 300; margin-bottom: 0.75rem;
+    }
+    .degisir-poem {
+      padding-top: 1.75rem; border-top: 1px solid rgba(26,26,24,0.1);
+    }
+    .degisir-poem p {
+      font-size: 1.125rem; font-weight: 300;
+      letter-spacing: -0.015em; color: rgba(26,26,24,0.75);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════
+       BU ALAN SENİN İÇİN Mİ?
+    ═══════════════════════════════════════ */
+    .who-title {
+      font-size: 2.25rem; font-weight: 300;
+      letter-spacing: -0.025em; color: #1a1a18;
+      margin-bottom: 3.5rem;
+    }
+    .who-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .who-col-head {
+      font-size: 0.875rem; font-weight: 400; color: #1a1a18;
+      margin-bottom: 1.75rem;
+    }
+    .who-col--no .who-col-head { color: rgba(26,26,24,0.38); }
+
+    /* Evet block — new narrative structure */
+    .evet-assertion {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.72);
+      font-weight: 300; line-height: 1.6; margin-bottom: 1.5rem;
+    }
+    .evet-qualities {
+      display: flex; flex-direction: column; gap: 0.125rem;
+      padding-left: 1.25rem;
+      border-left: 1px solid rgba(26,26,24,0.15);
+      margin-bottom: 1.75rem;
+    }
+    .evet-qualities span {
+      font-size: 0.9375rem; color: rgba(26,26,24,0.55);
+      font-weight: 300; line-height: 1.75;
+    }
+    .evet-close {
+      font-size: 1rem; color: rgba(26,26,24,0.62);
+      line-height: 1.7; font-weight: 300; margin-bottom: 0.375rem;
+    }
+    .evet-close-strong {
+      font-size: 1.0625rem; font-weight: 400;
+      color: rgba(26,26,24,0.8); letter-spacing: -0.01em;
+    }
+
+    /* Hayır block */
+    .hayir-list { list-style: none; }
+    .hayir-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(26,26,24,0.08);
+      font-size: 0.9375rem; color: rgba(26,26,24,0.38);
+      font-weight: 300; line-height: 1.55;
+    }
+    .hayir-list li:first-child { border-top: 1px solid rgba(26,26,24,0.08); }
+
+    .who-closing {
+      margin-top: 3.5rem; padding-top: 2.5rem;
+      border-top: 1px solid rgba(26,26,24,0.1);
+      max-width: 36rem;
+    }
+    .who-closing p {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.62);
+      line-height: 1.75; font-weight: 300;
+    }
+    .who-closing p + p { margin-top: 0.25rem; }
+
+    /* ═══════════════════════════════════════
+       KURUCU GRUP / FİYAT / CTA
+    ═══════════════════════════════════════ */
+    .final-section { padding: 7rem 6rem; border-top: 1px solid rgba(26,26,24,0.1); }
+    .final-inner {
+      max-width: 72rem; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .final-label {
+      font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(26,26,24,0.32); margin-bottom: 1.75rem;
+    }
+    .final-headline {
+      font-size: 2rem; font-weight: 300;
+      letter-spacing: -0.025em; color: #1a1a18;
+      line-height: 1.2; margin-bottom: 1rem;
+    }
+    .final-desc {
+      font-size: 1rem; color: rgba(26,26,24,0.52);
+      font-weight: 300; line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .final-details { margin-bottom: 2.5rem; }
+    .final-detail-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.875rem 0; border-bottom: 1px solid rgba(26,26,24,0.08); gap: 2rem;
+    }
+    .final-detail-row:first-child { border-top: 1px solid rgba(26,26,24,0.08); }
+    .final-detail-key { font-size: 0.875rem; color: rgba(26,26,24,0.42); }
+    .final-detail-val { font-size: 0.875rem; color: #1a1a18; font-weight: 400; text-align: right; }
+    .final-detail-val.price { font-size: 1.125rem; letter-spacing: -0.02em; }
+
+    /* Poetic close */
+    .final-poem {
+      margin-top: 0; padding-top: 0;
+    }
+    .final-poem__maybe {
+      font-size: 1.0625rem; color: rgba(26,26,24,0.55);
+      font-weight: 300; line-height: 1.8; margin-bottom: 0.5rem;
+    }
+    .final-poem__anchor {
+      font-size: 1.5rem; font-weight: 300;
+      letter-spacing: -0.025em; color: #1a1a18;
+      line-height: 1.2; margin-bottom: 0.75rem;
+    }
+    .final-poem__lines {
+      display: flex; flex-direction: column; gap: 0.125rem;
+      margin-bottom: 2.5rem;
+    }
+    .final-poem__lines span {
+      font-size: 1rem; color: rgba(26,26,24,0.42);
+      font-weight: 300; font-style: italic; line-height: 1.7;
+    }
+    .final-cta-preamble {
+      font-size: 0.9375rem; color: rgba(26,26,24,0.55);
+      font-weight: 300; margin-bottom: 1rem;
+    }
+
+    /* ─── Editorial image block ─── */
+    .img-block {
+      width: 100%; background: #e8e5df;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .img-block--lg { height: 58vh; min-height: 300px; }
+    .img-block--md { height: 44vh; min-height: 220px; }
+    .img-block--sm { height: 32vh; min-height: 180px; }
+    .img-block__label {
+      font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(26,26,24,0.18);
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      padding: 2rem 6rem; border-top: 1px solid rgba(26,26,24,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer__copy { font-size: 0.75rem; color: rgba(26,26,24,0.3); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 960px) {
+      .hero { background-position: 75% bottom; }
+      .hero__content { padding: 4rem 2rem 1rem 2rem; max-width: 65%; }
+      .hero__text-svg { max-width: 100%; }
+      .hero__infobar-svg { width: 100%; max-width: 538px; margin-left: 0; }
+      .section { padding: 5rem 2rem; }
+      .section--dense { padding: 4rem 2rem; }
+      .ev-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .ev-sticky-label { position: static; font-size: 1.25rem; }
+      .reframe-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .reframe-title { position: static; font-size: 2rem; }
+      .degisir-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .who-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .haftalik-grid { grid-template-columns: repeat(2, 1fr); }
+      .final-section { padding: 5rem 2rem; }
+      .final-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .final-headline { font-size: 1.75rem; }
+      .accordion__body-inner { padding: 0 1.5rem 2rem 3.5rem; }
+      .nav { padding: 1rem 1.5rem; }
+      .footer { padding: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .hero__content { max-width: 70%; }
+      .haftalik-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav">
+  <a href="/" class="nav__logo">
+    <img src="assets/nilufer-ormanli-sutun-logo.svg" alt="Nilüfer Ormanlı" />
+  </a>
+  <a href="#basvuru" class="nav__cta">Başvuru Yap</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO — LOCKED, identical to editorial-d
+═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__content">
+    <img src="assets/hero-textb.svg" alt="Evdeki Ses" class="hero__text-svg" />
+    <img src="assets/infoBar.svg" alt="" class="hero__infobar-svg" aria-hidden="true" />
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     EVDEKİ SES NEDİR?
+═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section__inner">
+    <p class="section-num">01 — Evdeki Ses Nedir?</p>
+
+    <div class="ev-layout">
+
+      <div>
+        <h2 class="ev-sticky-label">Evdeki Ses Nedir?</h2>
+      </div>
+
+      <div class="ev-body">
+
+        <p class="ev-opening">
+          İçinde bekleyen bir ses, bir yön, bir yaratım ya da görünür olmayı isteyen bir parça olduğunu hissediyorsan — ama bunu zorlayarak, performansla ya da kendini düzeltme baskısıyla dışarı çağırmak istemiyorsan —
+        </p>
+        <p class="ev-opening-close">bu alan senin için açıldı.</p>
+
+        <p class="ev-not-vokal">Bu bir vokal eğitimi değil. Sesin çıkarken kendi bedeninde kalabilmen için tasarlanmış bir alan.</p>
+
+        <div>
+          <p class="ev-ses-core">Ses sadece ses değil.</p>
+          <p class="ev-ses-change">Sesin değiştiğinde — ilişkinde, yaratımında, görünürlüğünde kendinde kalma biçimin değişmeye başlar.</p>
+        </div>
+
+        <div class="ev-facts">
+          <p>Ses, temas ve ifade üzerine 5 haftalık canlı destekli bir süreç.</p>
+          <p>10 kişilik küçük grup. Çevrim içi. Türkçe.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PAIN POINT
+═══════════════════════════════════════════ -->
+<section class="section section--tinted">
+  <div class="section__inner">
+    <p class="section-num">02 — Tanıma</p>
+
+    <h2 class="pain-title">Bu sana tanıdık gelebilir:</h2>
+
+    <ul class="pain-list">
+      <li>Bir şey söylemeden önce karşındakinin nasıl hissedeceğini hesaplıyorsun.</li>
+      <li>"Hayır" dedikten sonra ortamı toparlama ihtiyacı geliyor.</li>
+      <li>Görünür olmak istiyorsun ama bedenin geri çekiliyor.</li>
+      <li>Bir fikrin var. İnanıyorsun ona. Ama dışarı çıkmadan donuyor.</li>
+      <li>Duyulmak istiyorsun ama gerçekten duyulduğun anda içeride bir yer geriliyor.</li>
+      <li>Kendini ifade ettikten sonra "fazla mı oldum?" diye geri topluyorsun.</li>
+      <li>Anlatıyorsun. Tekrar anlatıyorsun. Yoruluyorsun. Yine de duyulmadığını hissediyorsun.</li>
+      <li>Sesin bazı insanların yanında küçülüyor. Neden olduğunu tam bilmiyorsun.</li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- ── Editorial image ── -->
+<div class="img-block img-block--lg">
+  <span class="img-block__label">Fotoğraf</span>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     REFRAME
+═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="section__inner">
+    <p class="section-num">03 — Çerçeve</p>
+
+    <div class="reframe-layout">
+
+      <div>
+        <h2 class="reframe-title">Bu sadece "özgüven eksikliği" değil.</h2>
+      </div>
+
+      <div class="reframe-body">
+
+        <p class="rf-intro">Birçok kadın küçük yaşlardan itibaren şunu öğrenir:</p>
+
+        <ul class="rf-learned">
+          <li>Önce ortamı oku.</li>
+          <li>Önce gerilimi azalt.</li>
+          <li>Çok yer kaplama.</li>
+          <li>Çok talepkâr görünme.</li>
+        </ul>
+
+        <p class="rf-automatic">Ve beden bunu otomatik hâle getirir.</p>
+
+        <div class="rf-physical">
+          <p class="rf-physical-trigger">Cümle daha çıkmadan —</p>
+          <div class="rf-physical-items">
+            <span>nefes değişiyor.</span>
+            <span>Karın sıkılıyor.</span>
+            <span>Boğaz tutuluyor.</span>
+            <span>İfade kendini küçültüyor.</span>
+          </div>
+        </div>
+
+        <p class="rf-karakter">Bu bir karakter zayıflığı değil.</p>
+        <p class="rf-korunma">Bedenin yıllarca öğrendiği bir organizasyon biçimi.</p>
+
+        <p class="rf-reflex-intro">Ama aynı organizasyon şimdi seni</p>
+        <ul class="rf-reflex-list">
+          <li>konuşurken yavaşlatıyor.</li>
+          <li>yaratırken durduruyor.</li>
+          <li>görünür olurken küçültüyor.</li>
+          <li>temas ederken kapatıyor.</li>
+        </ul>
+
+        <hr class="section-rule" />
+
+        <div class="rf-questions-block">
+          <p class="rf-question-para">
+            Ses çıkmadan hemen önce ne oluyor? Cümle gelmeden önce beden nerede? Görünür olmadan önce sistemin neyi korumaya çalışıyor? Ve sen bütün bunların içinde kendini terk etmeden nasıl kalabilirsin?
+          </p>
+
+          <p class="rf-anchor">Evdeki Ses burada başlar.</p>
+
+          <p class="rf-explain">Sesi zorlamadan önce — sesin nerede tutulduğunu görmekle. Organizasyonu fark etmekle. Ve küçük ama gerçek adımlarla hayata taşımakla.</p>
+          <p class="rf-beş-hafta">Beş hafta boyunca bu hat, her hafta farklı bir katmandan geçer.</p>
+        </div>
+
+        <hr class="section-rule" />
+
+        <!-- Inline CTAs -->
+        <div class="inline-cta">
+          <p>Başvuru formu açık. On kadınla sınırlı.</p>
+          <a href="#basvuru" class="inline-cta-link">→ Forma göz at</a>
+        </div>
+        <div class="inline-cta" style="margin-top: 0.75rem; flex-direction: column; align-items: flex-start; gap: 0.25rem;">
+          <p>Henüz emin değil misin? Sesin nerede tutulduğunu önce kendin keşfet.</p>
+          <a href="#" class="inline-cta-link">→ Ücretsiz analizi başlat</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Editorial image ── -->
+<div class="img-block img-block--md">
+  <span class="img-block__label">Fotoğraf</span>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PROGRAM AKIŞI (accordion)
+═══════════════════════════════════════════ -->
+<section class="section section--tinted" id="surec">
+  <div class="section__inner">
+    <p class="section-num">04 — Program akışı</p>
+    <h2 class="accordion-title">Program akışı</h2>
+
+    <div class="accordion" id="accordion">
+
+      <!-- Hazırlık Alanı -->
+      <div class="accordion__item is-open">
+        <button type="button" class="accordion__trigger">
+          <div class="accordion__trigger-left">
+            <span class="accordion__num">00</span>
+            <span class="accordion__label">Hazırlık Alanı</span>
+          </div>
+          <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M10 4v12M4 10h12"/>
+          </svg>
+        </button>
+        <div class="accordion__body">
+          <div class="accordion__body-inner">
+            <p class="acc-p">Program başlamadan önce kendi sistemini gözlemlemeye başlıyorsun.</p>
+            <ul class="acc-q-list">
+              <li>Sesin nerede rahat?</li>
+              <li>Nerede kısılıyor?</li>
+              <li>Kimlerin yanında değişiyor?</li>
+              <li>Hangi cümleleri söylemek zor geliyor?</li>
+            </ul>
+            <p class="acc-amac">Hazırlanmak için değil.</p>
+            <p class="acc-amac-val">Temas kurmak için.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hafta 1 -->
+      <div class="accordion__item">
+        <button type="button" class="accordion__trigger">
+          <div class="accordion__trigger-left">
+            <span class="accordion__num">01</span>
+            <span class="accordion__label">Hafta 1 — Zemin</span>
+          </div>
+          <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M10 4v12M4 10h12"/>
+          </svg>
+        </button>
+        <div class="accordion__body">
+          <div class="accordion__body-inner">
+            <p class="acc-p">Ses sadece boğazdan çıkmaz. Ayaktan, karından, diyaframdan, sinir sisteminin o andaki organizasyonundan çıkar.</p>
+            <p class="acc-p">Bu hafta sese değil, ses çıkmadan önce bedenin ne yaptığına bakıyoruz.</p>
+            <ul class="acc-q-list">
+              <li>Konuşmadan önce hızlanıyor musun?</li>
+              <li>Görünür olmadan önce bedenin küçülüyor mu?</li>
+              <li>Bir şey söyleyeceğin anda kendini terk ediyor musun?</li>
+            </ul>
+            <p class="acc-amac">Bu hafta amaç güçlü çıkmak değil.</p>
+            <p class="acc-amac-val">Önce içeride nerede kaybolduğunu görmek.</p>
+            <div class="hafta-insight">
+              <span class="hafta-insight__label">Hafta sonunda açılan şey</span>
+              <span class="hafta-insight__text">Ses sadece boğazdan çıkmıyor. Bütün bedenin organizasyonundan çıkıyor.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hafta 2 -->
+      <div class="accordion__item">
+        <button type="button" class="accordion__trigger">
+          <div class="accordion__trigger-left">
+            <span class="accordion__num">02</span>
+            <span class="accordion__label">Hafta 2 — Akış</span>
+          </div>
+          <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M10 4v12M4 10h12"/>
+          </svg>
+        </button>
+        <div class="accordion__body">
+          <div class="accordion__body-inner">
+            <p class="acc-p">Birçok kadın ne istediğini bilmediği için değil, istediğini söylediğinde ne olacağından çekindiği için susar.</p>
+            <p class="acc-p">Bu hafta istek, arzu, sınır ve suçlulukla karışan ifade alanına bakıyoruz.</p>
+            <ul class="acc-q-list">
+              <li>Ne istediğini söylerken bedenin ne yapıyor?</li>
+              <li>Sınır koyduğunda hemen açıklama ihtiyacı geliyor mu?</li>
+              <li>Kendi yönünü söylerken sesin küçülüyor mu?</li>
+            </ul>
+            <p class="acc-amac">Burada amaç herkese karşı daha sert olmak değil.</p>
+            <p class="acc-amac-val">Kendi içindeki yönü duyabilmek ve onu küçük, gerçek cümlelerle ifade edebilmek.</p>
+            <div class="hafta-insight">
+              <span class="hafta-insight__label">Hafta sonunda açılan şey</span>
+              <span class="hafta-insight__text">İstemek beni tehlikeye atmadan da mümkün olabilir.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hafta 3 -->
+      <div class="accordion__item">
+        <button type="button" class="accordion__trigger">
+          <div class="accordion__trigger-left">
+            <span class="accordion__num">03</span>
+            <span class="accordion__label">Hafta 3 — Görünürlük</span>
+          </div>
+          <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M10 4v12M4 10h12"/>
+          </svg>
+        </button>
+        <div class="accordion__body">
+          <div class="accordion__body-inner">
+            <p class="acc-p">Görünür olmak sadece kamera karşısına geçmek değil.</p>
+            <p class="acc-p">Bir odada fikrini söylemek de görünürlük. Yaratımını başkalarının önüne koymak da görünürlük. İlişkide gerçeğini söylemek de görünürlük.</p>
+            <p class="acc-p">Bu hafta görünürlük karşısında bedeninin ve sesinin ne yaptığına bakıyoruz. Saldırmadan. Küçülmeden.</p>
+            <div class="hafta-insight">
+              <span class="hafta-insight__label">Hafta sonunda açılan şey</span>
+              <span class="hafta-insight__text">Görünür olurken performansa kaçmadan da kalabilirim.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hafta 4 -->
+      <div class="accordion__item">
+        <button type="button" class="accordion__trigger">
+          <div class="accordion__trigger-left">
+            <span class="accordion__num">04</span>
+            <span class="accordion__label">Hafta 4 — Temas</span>
+          </div>
+          <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M10 4v12M4 10h12"/>
+          </svg>
+        </button>
+        <div class="accordion__body">
+          <div class="accordion__body-inner">
+            <p class="acc-p">Birçok insan ses çıkarmaktan değil, sesinin gerçekten duyulmasından çekinir.</p>
+            <p class="acc-p">Çünkü duyulmak bazen çıplak hissettirir.</p>
+            <p class="acc-p">Biri seni gerçekten dinlediğinde bedenin kapanabilir. Konuyu değiştirebilirsin. Fazla açıklamaya başlayabilirsin. Sesini hemen geri toplayabilirsin.</p>
+            <p class="acc-p">Bu hafta sesin temas kapasitesini çalışıyoruz. Sadece konuşmak değil. Sadece ifade etmek değil. Duyulurken de bedende kalmak.</p>
+            <p class="acc-amac-val" style="margin-bottom: 0.875rem;">Duyulmak her zaman tehlike değil. Duyulmak, temas olabilir.</p>
+            <div class="hafta-insight">
+              <span class="hafta-insight__label">Hafta sonunda açılan şey</span>
+              <span class="hafta-insight__text">Görünür olurken, etkilenirken, ilişki kurarken kendimde kalabiliyor muyum?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hafta 5 -->
+      <div class="accordion__item">
+        <button type="button" class="accordion__trigger">
+          <div class="accordion__trigger-left">
+            <span class="accordion__num">05</span>
+            <span class="accordion__label">Hafta 5 — Canlı Ses</span>
+          </div>
+          <svg class="accordion__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M10 4v12M4 10h12"/>
+          </svg>
+        </button>
+        <div class="accordion__body">
+          <div class="accordion__body-inner">
+            <p class="acc-p" style="letter-spacing: -0.01em; color: rgba(26,26,24,0.55);">Beden. Nefes. Zemin. İstek. Görünürlük. Temas.</p>
+            <p class="acc-p">Şimdi bunların hepsi bir arada.</p>
+            <p class="acc-p">Canlı ses performans sesi değil. O anda bedenle, duyguyla, nefesle, gerçekle temas hâlinde olan ses.</p>
+            <p class="acc-p">Bazen daha sade olur. Bazen daha alçak. Bazen daha direkt. Bazen daha sıcak. Bazen daha sessiz — ama daha yerinde.</p>
+            <div class="hafta-insight">
+              <span class="hafta-insight__label">Hafta sonunda açılan şey</span>
+              <span class="hafta-insight__text">Sesim sadece çıkmıyor. Bende kalıyor.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Editorial image ── -->
+<div class="img-block img-block--lg">
+  <span class="img-block__label">Fotoğraf</span>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HER HAFTA SENİ BEKLEYENLER
+═══════════════════════════════════════════ -->
+<section class="section" id="format">
+  <div class="section__inner">
+    <p class="section-num">05 — Her hafta seni bekleyenler</p>
+
+    <h2 style="font-size: 2rem; font-weight: 300; letter-spacing: -0.025em; color: #1a1a18; margin-bottom: 2rem;">Her hafta seni bekleyenler</h2>
+
+    <p class="haftalik-intro">Bu program bilgiyle dolup taşman için değil. Az ama etkili pratiklerle kendi sesinle gerçek temas kurman için.</p>
+
+    <div class="haftalik-grid">
+      <div class="haftalik-card">
+        <span class="haftalik-card__icon">🎙</span>
+        <p class="haftalik-card__title">Canlı grup buluşması</p>
+        <p class="haftalik-card__desc">Sesin başka seslerle karşılaştığı, pratiğin gerçek zamanlı olduğu alan.</p>
+      </div>
+      <div class="haftalik-card">
+        <span class="haftalik-card__icon">🎬</span>
+        <p class="haftalik-card__title">Haftalık tema videosu</p>
+        <p class="haftalik-card__desc">O haftanın odağını neden çalıştığımızı ve bedende nasıl hissettirdiğini açar.</p>
+      </div>
+      <div class="haftalik-card">
+        <span class="haftalik-card__icon">🌀</span>
+        <p class="haftalik-card__title">Rehberli uygulama videoları</p>
+        <p class="haftalik-card__desc">Ses, nefes, hareket ve ritim üzerinden — sadece izlemek değil, bedenle yapmak için.</p>
+      </div>
+      <div class="haftalik-card">
+        <span class="haftalik-card__icon">🎧</span>
+        <p class="haftalik-card__title">Sesli pratik kayıtları</p>
+        <p class="haftalik-card__desc">Yalnız başına, kendi hızında, istediğin zaman dönebileceğin rehberli sesler.</p>
+      </div>
+      <div class="haftalik-card">
+        <span class="haftalik-card__icon">📓</span>
+        <p class="haftalik-card__title">Haftalık çalışma dosyası</p>
+        <p class="haftalik-card__desc">O haftanın temasını kendi hayatında görmek için sorular — içe bak, fark et, yaz.</p>
+      </div>
+      <div class="haftalik-card">
+        <span class="haftalik-card__icon">🌱</span>
+        <p class="haftalik-card__title">Günlük hayat pratikleri</p>
+        <p class="haftalik-card__desc">Çalışmayı gerçek bir konuşmaya, gerçek bir ana taşıyan küçük dokunuşlar.</p>
+      </div>
+      <div class="haftalik-card">
+        <span class="haftalik-card__icon">🌙</span>
+        <p class="haftalik-card__title">Entegrasyon kaydı</p>
+        <p class="haftalik-card__desc">Haftayı kapatmak, bedene dönmek ve gördüklerini sindirmek için rehberli bir ses.</p>
+      </div>
+    </div>
+
+    <div class="haftalik-cta">
+      <p>Bu format sana göre hissettiriyorsa —</p>
+      <a href="#basvuru" class="inline-cta-link">→ Başvuru formunu doldur</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     BU SÜREÇTEKİ NE DEĞİŞEBİLİR?
+═══════════════════════════════════════════ -->
+<section class="section section--tinted">
+  <div class="section__inner">
+    <p class="section-num">06 — Ne değişebilir?</p>
+
+    <div class="degisir-layout">
+
+      <div>
+        <h2 class="degisir-title">Bu süreçte ne değişebilir?</h2>
+        <p class="degisir-framing">Bu program sana bir anda sınırsız özgüven vaat etmiyor.</p>
+        <p class="degisir-framing" style="margin-top: 0.75rem;">Ama çok daha temel bir şeyi çalışıyor: Kendini ifade ederken bedeninde kalma kapasiteni.</p>
+      </div>
+
+      <div class="degisir-right">
+        <p class="degisir-capacity">Bu kapasite büyüdüğünde —</p>
+
+        <ul class="degisir-list">
+          <li>Aynı cümleyi üç kez açıklamak zorunda hissettiğin anlar azalır.</li>
+          <li>Sınır koyduktan sonra içindeki o çöküş hafifler.</li>
+          <li>Bir fikir dışarı çıkmadan donmak yerine küçük bir adım bulur.</li>
+          <li>Görünür olduktan sonra toparlanma süresi kısalır.</li>
+          <li>Duyulduğunda geri çekilmek yerine orada kalmayı deneyimlersin.</li>
+        </ul>
+
+        <p class="degisir-mid">Bunlar küçük görünebilir.</p>
+        <p class="degisir-mid">Ama bir kadının hayatında bazen en büyük değişim şudur:</p>
+
+        <div class="degisir-poem">
+          <p>Kendi cümlesini kurar.</p>
+          <p>Kendi sesini duyar.</p>
+          <p>Ve artık onu hemen geri toplamaz.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Editorial image ── -->
+<div class="img-block img-block--sm">
+  <span class="img-block__label">Fotoğraf</span>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     BU ALAN SENİN İÇİN Mİ?
+═══════════════════════════════════════════ -->
+<section class="section" id="kime-gore">
+  <div class="section__inner">
+    <p class="section-num">07 — Bu alan senin için mi?</p>
+
+    <h2 class="who-title">Bu alan senin için mi?</h2>
+
+    <div class="who-grid">
+
+      <div class="who-col">
+        <h3 class="who-col-head">Evet, eğer:</h3>
+
+        <p class="evet-assertion">Kendi sesini taşıyabilen bir kadın olmak istiyorsan.</p>
+
+        <div class="evet-qualities">
+          <span>Bir cümle kurmadan önce kendini terk etmeyen.</span>
+          <span>Sınır koyduğunda hemen savunmaya geçmeyen.</span>
+          <span>Görünür olurken bedeninden kopmayan.</span>
+          <span>İsteğini söylerken küçülmeyen.</span>
+          <span>Duyulduğunda kaçmayan.</span>
+          <span>Yaratırken kendini sürekli düzeltmeyen.</span>
+        </div>
+
+        <p class="evet-close">Bu bir dönüşüm performansı değil. Daha gerçek bir başlangıç.</p>
+        <p class="evet-close-strong">Sesin sadece çıkması değil. Sende kalması.</p>
+      </div>
+
+      <div class="who-col who-col--no">
+        <h3 class="who-col-head">Hayır, eğer:</h3>
+        <ul class="hayir-list">
+          <li>Hızlı bir özgüven formülü arıyorsan.</li>
+          <li>Sadece teknik ses egzersizi istiyorsan.</li>
+          <li>Kendi bedensel reflekslerine bakmak istemiyorsan.</li>
+          <li>Canlı grup içinde görünür olmayı hiç istemiyorsan.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="who-closing">
+      <p>Burada cilalı bir persona kurmuyoruz.</p>
+      <p>Daha gerçek bir alan kuruyoruz.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     KURUCU GRUP / FİYAT / CTA
+═══════════════════════════════════════════ -->
+<section class="final-section" id="basvuru">
+  <div class="final-inner">
+
+    <div>
+      <p class="final-label">Kurucu Grup</p>
+      <h2 class="final-headline">İlk grup on kadınla açılıyor.</h2>
+      <p class="final-desc">Bu çalışma ancak gerçek temas mümkün olduğunda işe yarıyor.</p>
+
+      <div class="final-poem">
+        <p class="final-poem__maybe">Belki de aradığın şey daha güçlü bir ses değildir.</p>
+        <p class="final-poem__anchor">Daha evde bir ses.</p>
+        <div class="final-poem__lines">
+          <span>Kendi bedeninde.</span>
+          <span>Kendi ritminde.</span>
+          <span>Kendi gerçeğinde.</span>
+        </div>
+        <p class="final-cta-preamble">Kendi sesine yer açmaya hazırsan —</p>
+        <a href="#" class="btn-primary">
+          → Başvuru formunu doldur
+          <svg viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 5.5h9M6 2l3.5 3.5L6 9"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="final-details">
+        <div class="final-detail-row">
+          <span class="final-detail-key">Kontenjan</span>
+          <span class="final-detail-val">10 kadın</span>
+        </div>
+        <div class="final-detail-row">
+          <span class="final-detail-key">Süre</span>
+          <span class="final-detail-val">5 hafta</span>
+        </div>
+        <div class="final-detail-row">
+          <span class="final-detail-key">Format</span>
+          <span class="final-detail-val">Çevrim içi, canlı küçük grup</span>
+        </div>
+        <div class="final-detail-row">
+          <span class="final-detail-key">Katılım bedeli</span>
+          <span class="final-detail-val price">12.000 TL</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <span class="footer__copy">© Nilüfer Ormanlı · Evdeki Ses</span>
+</footer>
+
+<!-- ─── Accordion JS ─── -->
+<script>
+(function () {
+  var items = document.querySelectorAll('.accordion__item');
+  items.forEach(function (item) {
+    var trigger = item.querySelector('.accordion__trigger');
+    trigger.addEventListener('click', function () {
+      var isOpen = item.classList.contains('is-open');
+      items.forEach(function (el) { el.classList.remove('is-open'); });
+      if (!isOpen) item.classList.add('is-open');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
