@@ -1,3 +1,5 @@
 assets/images/*.pxd
 *.pxd
 .claude
+.pdf
+.pages

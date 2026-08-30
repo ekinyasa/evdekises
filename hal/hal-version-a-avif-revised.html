@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HÂL | Derin Dinleme</title>
+<meta name="description" content="HÂL | Derin Dinleme">
+<style>
+  :root {
+    --ink: #dfe2d8;
+    --ink-soft: #b7bdb2;
+    --ink-muted: #8e978c;
+    --surface-deep: #17211d;
+    --surface: #202c27;
+    --surface-soft: #2b3731;
+    --line: rgba(226,231,221,.15);
+    --line-strong: rgba(226,231,221,.28);
+    --button: #d9ddd2;
+    --button-ink: #1c2521;
+    --max: 1240px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: var(--surface-deep); }
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--surface-deep);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  button, input { font: inherit; }
+
+  :focus-visible {
+    outline: 2px solid #e3e7dc;
+    outline-offset: 4px;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 96svh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: #1b2924;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+  }
+
+  .hero-media video,
+
+.hero-media img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: 50% 48%;
+
+  display: block;
+
+}
+
+.hero-media img {
+
+  filter: saturate(.76) contrast(.94) brightness(.78);
+
+  transform: scale(1.012);
+
+}
+
+.hero-media video {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: 50% 48%;
+
+  display: block;
+
+  filter: saturate(.76) contrast(.94) brightness(.78);
+
+  transform: scale(1.012);
+
+}
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(180deg, rgba(10,18,15,.12) 0%, rgba(14,22,19,.09) 52%, rgba(15,23,20,.54) 100%),
+      radial-gradient(circle at 50% 46%, rgba(210,218,204,.03), rgba(0,0,0,.16) 72%);
+  }
+
+
+
+  .hero-lockup {
+    width: min(88vw, 680px);
+    text-align: center;
+    transform: translateY(-1.5vh);
+  }
+
+  .brand {
+    margin: 0;
+    font-family: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+    font-size: clamp(46px, 4.7vw, 74px);
+    line-height: .92;
+    font-weight: 400;
+    letter-spacing: .015em;
+    color: rgba(231,233,223,.82);
+    text-shadow: 0 1px 18px rgba(11,17,14,.24);
+  }
+
+  .brand-sub {
+    margin: 18px 0 0;
+    font-size: clamp(12px, 1.04vw, 15px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: .46em;
+    text-indent: .46em;
+    color: rgba(230,233,224,.69);
+  }
+
+  .hero-definition {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(38px, 5.2vh, 72px);
+    transform: translateX(-50%);
+    width: min(680px, calc(100% - 48px));
+    margin: 0;
+    text-align: center;
+    font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+    font-size: clamp(16px, 1.35vw, 20px);
+    line-height: 1.55;
+    font-weight: 400;
+    color: rgba(230,233,224,.74);
+  }
+
+  .section {
+    position: relative;
+    padding-inline: max(28px, calc((100vw - var(--max)) / 2));
+  }
+
+  .contents {
+    background:
+      linear-gradient(180deg, #1b2722 0%, var(--surface) 34%, #202b26 100%);
+    padding-top: clamp(96px, 11vw, 168px);
+    padding-bottom: clamp(110px, 12vw, 180px);
+  }
+
+  .contents-inner {
+    display: grid;
+    grid-template-columns: minmax(240px, .8fr) minmax(0, 1.7fr);
+    gap: clamp(56px, 8vw, 132px);
+    align-items: start;
+  }
+
+  .section-title {
+    margin: 0;
+    max-width: 320px;
+    font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+    font-size: clamp(30px, 3vw, 46px);
+    line-height: 1.12;
+    font-weight: 400;
+    letter-spacing: -.015em;
+    color: #dde1d6;
+  }
+
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--line);
+  }
+
+  .content-item {
+    padding: 34px 24px 39px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .content-item:nth-child(odd) {
+    padding-right: clamp(36px, 5vw, 72px);
+  }
+
+  .content-item:nth-child(even) {
+    padding-left: clamp(30px, 4vw, 60px);
+    border-left: 1px solid var(--line);
+  }
+
+  .content-item:last-child {
+    grid-column: 1 / 2;
+  }
+
+  .content-item h3 {
+    margin: 0 0 11px;
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 500;
+    letter-spacing: .02em;
+    color: #e1e4da;
+  }
+
+  .content-item p {
+    margin: 0;
+    max-width: 42ch;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.72;
+    font-weight: 350;
+  }
+
+  .join {
+    min-height: 68svh;
+    display: flex;
+    align-items: center;
+    background:
+      radial-gradient(circle at 80% 18%, rgba(104,122,110,.13), transparent 35%),
+      linear-gradient(180deg, #202b26 0%, #15201c 100%);
+    padding-top: clamp(96px, 10vw, 150px);
+    padding-bottom: clamp(96px, 10vw, 150px);
+    border-top: 1px solid rgba(226,231,221,.06);
+  }
+
+  .join-inner {
+    width: 100%;
+  }
+
+  .join-title {
+    margin: 0 0 54px;
+    font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+    font-size: clamp(34px, 3.8vw, 58px);
+    line-height: 1.12;
+    font-weight: 400;
+    letter-spacing: -.018em;
+    color: #e0e4d9;
+  }
+
+  .signup {
+    display: grid;
+    grid-template-columns: minmax(180px, .8fr) minmax(250px, 1.2fr) auto;
+    align-items: end;
+    gap: 0;
+    width: 100%;
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .field {
+    position: relative;
+    min-width: 0;
+  }
+
+  .field + .field {
+    border-left: 1px solid var(--line);
+  }
+
+  .field label {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    font-size: 10px;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    pointer-events: none;
+  }
+
+  .field input {
+    width: 100%;
+    height: 84px;
+    padding: 29px 34px 10px 0;
+    border: 0;
+    background: transparent;
+    color: #eef0e8;
+    border-radius: 0;
+    outline: 0;
+  }
+
+  .field + .field label {
+    left: 28px;
+  }
+
+  .field + .field input {
+    padding-left: 28px;
+  }
+
+  .field:focus-within {
+    background: rgba(255,255,255,.018);
+  }
+
+  .submit {
+    height: 84px;
+    min-width: 176px;
+    border: 0;
+    border-left: 1px solid var(--line-strong);
+    border-radius: 0;
+    padding: 0 32px;
+    background: var(--button);
+    color: var(--button-ink);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 550;
+    letter-spacing: .045em;
+    transition: background .25s ease, color .25s ease;
+  }
+
+  .submit:hover {
+    background: #eef0e8;
+  }
+
+  .secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 27px;
+    color: #98a198;
+    font-size: 12px;
+    letter-spacing: .025em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(152,161,152,.35);
+    padding-bottom: 3px;
+  }
+
+  .secondary::after {
+    content: "↗";
+    font-size: 12px;
+  }
+
+  .secondary:hover {
+    color: #d8ddd2;
+    border-color: rgba(216,221,210,.6);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 900ms cubic-bezier(.22,.61,.36,1), transform 900ms cubic-bezier(.22,.61,.36,1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 800px) {
+    .hero {
+      min-height: 94svh;
+    }
+
+    .hero-media img {
+      object-position: 48% 50%;
+      transform: scale(1.18);
+    }
+
+    .hero-lockup {
+      transform: translateY(-4vh);
+    }
+
+    .brand {
+      font-size: clamp(48px, 15vw, 62px);
+    }
+
+    .brand-sub {
+      margin-top: 16px;
+      font-size: 11px;
+      letter-spacing: .37em;
+      text-indent: .37em;
+    }
+
+    .hero-definition {
+      bottom: 42px;
+      width: calc(100% - 56px);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .hero::after {
+      right: 14px;
+      bottom: 12px;
+      font-size: 8px;
+    }
+
+    .section {
+      padding-inline: 24px;
+    }
+
+    .contents {
+      padding-top: 88px;
+      padding-bottom: 112px;
+    }
+
+    .contents-inner {
+      grid-template-columns: 1fr;
+      gap: 56px;
+    }
+
+    .section-title {
+      max-width: 260px;
+      font-size: 34px;
+    }
+
+    .editorial-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .content-item,
+    .content-item:nth-child(odd),
+    .content-item:nth-child(even) {
+      grid-column: auto;
+      padding: 28px 0 31px;
+      border-left: 0;
+    }
+
+    .content-item h3 {
+      font-size: 15px;
+    }
+
+    .content-item p {
+      max-width: 36ch;
+      font-size: 14.5px;
+    }
+
+    .join {
+      min-height: 0;
+      padding-top: 94px;
+      padding-bottom: 92px;
+    }
+
+    .join-title {
+      margin-bottom: 42px;
+      font-size: 38px;
+      max-width: 290px;
+    }
+
+    .signup {
+      grid-template-columns: 1fr;
+      border-bottom: 0;
+    }
+
+    .field,
+    .field + .field {
+      border-left: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .field label,
+    .field + .field label {
+      left: 0;
+    }
+
+    .field input,
+    .field + .field input {
+      height: 76px;
+      padding: 27px 0 8px;
+    }
+
+    .submit {
+      width: 100%;
+      height: 68px;
+      min-width: 0;
+      border-left: 0;
+      margin-top: 18px;
+    }
+
+    .secondary {
+      margin-top: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+  .hero-media video {
+
+    display: none;
+
+  }
+
+}
+
+/* Hero video delivery */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hero-media video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 50%;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Mobile crop can be tuned later when a dedicated mobile export exists. */
+@media (max-width: 800px) {
+  .hero-media video {
+    object-position: 50% 50%;
+  }
+}
+
+/* Reduced-motion fallback: use the supplied still instead of motion. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-media video {
+    display: none !important;
+  }
+  .hero-media {
+    background: url("hal-still.png") center center / cover no-repeat;
+  }
+}
+
+
+.hero-media video,
+.hero__media video {
+  pointer-events: none;
+}
+
+.hero-media video::-webkit-media-controls,
+.hero__media video::-webkit-media-controls,
+.hero-media video::-webkit-media-controls-enclosure,
+.hero__media video::-webkit-media-controls-enclosure,
+.hero-media video::-webkit-media-controls-panel,
+.hero__media video::-webkit-media-controls-panel,
+.hero-media video::-webkit-media-controls-start-playback-button,
+.hero__media video::-webkit-media-controls-start-playback-button,
+.hero-media video::-webkit-media-controls-play-button,
+.hero__media video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+}
+
+
+/* Final hero video behavior */
+.hero-media video,
+.hero__media video {
+  pointer-events: none;
+}
+
+.hero-media video::-webkit-media-controls,
+.hero__media video::-webkit-media-controls,
+.hero-media video::-webkit-media-controls-enclosure,
+.hero__media video::-webkit-media-controls-enclosure,
+.hero-media video::-webkit-media-controls-panel,
+.hero__media video::-webkit-media-controls-panel,
+.hero-media video::-webkit-media-controls-play-button,
+.hero__media video::-webkit-media-controls-play-button,
+.hero-media video::-webkit-media-controls-start-playback-button,
+.hero__media video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+}
+
+
+/* Still-over-video playback gate */
+.hero-media,
+.hero__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-media video,
+.hero__media video,
+.hero-media .hero-cover,
+.hero__media .hero-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.hero-media video,
+.hero__media video {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-media .hero-cover,
+.hero__media .hero-cover {
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 700ms ease;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+.hero-media.is-playing .hero-cover,
+.hero__media.is-playing .hero-cover {
+  opacity: 0;
+}
+
+.hero-media video::-webkit-media-controls,
+.hero__media video::-webkit-media-controls,
+.hero-media video::-webkit-media-controls-enclosure,
+.hero__media video::-webkit-media-controls-enclosure,
+.hero-media video::-webkit-media-controls-panel,
+.hero__media video::-webkit-media-controls-panel,
+.hero-media video::-webkit-media-controls-play-button,
+.hero__media video::-webkit-media-controls-play-button,
+.hero-media video::-webkit-media-controls-start-playback-button,
+.hero__media video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media video,
+  .hero__media video {
+    display: none !important;
+  }
+
+  .hero-media .hero-cover,
+  .hero__media .hero-cover {
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+
+/* AVIF hero + requested refinements */
+.hero-media .hero-animation,
+.hero-media .hero-still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 48%;
+  filter: saturate(.76) contrast(.94) brightness(.78);
+  transform: scale(1.012);
+}
+.hero-media .hero-animation { z-index: 1; }
+.hero-media .hero-still {
+  z-index: 0;
+  visibility: hidden;
+}
+
+.hero-channel {
+  position: absolute;
+  z-index: 3;
+  top: 30px;
+  right: max(28px, calc((100vw - var(--max)) / 2));
+  color: rgba(230,233,224,.76);
+  text-decoration: none;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: .08em;
+  border-bottom: 1px solid rgba(230,233,224,.32);
+  padding-bottom: 3px;
+}
+.hero-channel:hover { color: rgba(238,240,232,.94); }
+
+.content-item:last-child {
+  grid-column: 1 / -1;
+  border-bottom: 1px dashed rgba(226,231,221,.28);
+  padding-right: calc(50% + clamp(18px, 2.5vw, 36px));
+}
+
+@media (max-width: 760px) {
+  .hero-channel {
+    top: 23px;
+    right: 20px;
+    max-width: 50vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+  }
+  .content-item:last-child {
+    grid-column: 1;
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media .hero-animation { display: none !important; }
+  .hero-media .hero-still {
+    display: block !important;
+    visibility: visible !important;
+  }
+}
+
+
+</style>
+</head>
+<body>
+<main>
+  <section class="hero" aria-labelledby="hal-title">
+    <div class="hero-media" aria-hidden="true">
+      <img class="hero-animation" src="hal-loop.avif" alt="">
+      <img class="hero-still" src="hal-still.png" alt="">
+    </div>
+
+    <a class="hero-channel"
+       href="https://www.youtube.com/@halderindinleme?themeRefresh=1"
+       target="_blank"
+       rel="noopener noreferrer">youtube.com/@halderindinleme</a>
+
+    <div class="hero-lockup reveal">
+      <h1 class="brand" id="hal-title">HÂL</h1>
+      <p class="brand-sub">DERİN DİNLEME</p>
+    </div>
+
+    <p class="hero-definition reveal">
+      ses, sessizlik, beden, dikkat ve düşünce arasında<br class="desktop-break">
+      açılan bir derin dinleme alanı.
+    </p>
+  </section>
+
+  <section class="section contents" aria-labelledby="contents-title">
+    <div class="contents-inner">
+      <h2 class="section-title reveal" id="contents-title">Burada ne bulacaksın?</h2>
+
+      <div class="editorial-grid">
+        <article class="content-item reveal">
+          <h3>Derin dinlenme pratikleri</h3>
+          <p>Bedenin ve zihnin sürekli bir şey yapmak zorunda olmadığı alanlar.</p>
+        </article>
+
+        <article class="content-item reveal">
+          <h3>Yoga Nidra ve uyku pratikleri</h3>
+          <p>Uyku ile uyanıklık arasındaki eşikte dinlenme, bırakma ve farkındalık.</p>
+        </article>
+
+        <article class="content-item reveal">
+          <h3>Ses temelli deneyimler</h3>
+          <p>Tını, titreşim, sessizlik ve dikkatle kurulan dinleme alanları.</p>
+        </article>
+
+        <article class="content-item reveal">
+          <h3>Kısa pratikler</h3>
+          <p>Günün içinde kendi ritmine geri dönmek için küçük duraklar.</p>
+        </article>
+
+        <article class="content-item reveal">
+          <h3>Podcastler ve konuşmalar</h3>
+          <p>Ses, beden, dikkat, dinlenme, yaratıcılık ve insanın iç dünyası üzerine daha derin sohbetler ve araştırmalar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section join" aria-labelledby="join-title">
+    <div class="join-inner">
+      <h2 class="join-title reveal" id="join-title">Yeni yayınlardan haberdar ol.</h2>
+
+      <form class="signup reveal" action="" method="post" onsubmit="event.preventDefault();" aria-describedby="form-note">
+        <div class="field">
+          <label for="name">İsim</label>
+          <input id="name" name="name" type="text" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <button class="submit" type="submit">HÂL’e katıl</button>
+      </form>
+
+      <span id="form-note" hidden>Prototype: form destination henüz tanımlı değil.</span>
+
+      <a class="secondary reveal"
+         href="https://www.youtube.com/@halderindinleme?themeRefresh=1"
+         target="_blank"
+         rel="noopener noreferrer">YouTube</a>
+    </div>
+  </section>
+</main>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const nodes = document.querySelectorAll('.reveal');
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    nodes.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    nodes.forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
