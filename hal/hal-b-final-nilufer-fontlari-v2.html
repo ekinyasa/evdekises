@@ -5,7 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HÂL | Derin Dinleme</title>
 <meta name="description" content="HÂL | Derin Dinleme; ses, sessizlik, beden, dikkat ve düşünce arasında açılan bir derin dinleme alanı." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Merriweather+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Merriweather+Sans:wght@300;400;500;600&display=swap');
+
 :root {
   --ink: #1b211d;
   --muted: #62685f;
@@ -521,28 +526,182 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   }
 }
 
+
+/* 2026-09 revision */
+.hero__top { justify-content: flex-end; }
+.channel {
+  opacity: 1;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .055em;
+  border: 1px solid rgba(247,245,238,.58);
+  border-radius: 999px;
+  padding: 11px 16px;
+  background: rgba(10,24,19,.20);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background .2s ease, border-color .2s ease;
+}
+.channel:hover { background: rgba(247,245,238,.12); border-color: rgba(247,245,238,.86); }
+.hero__intro-wrap { max-width: 720px; }
+.hero__intro { max-width: 680px; }
+.hero__descriptor {
+  max-width: 620px;
+  margin: 22px 0 0;
+  font-size: clamp(14px, 1.15vw, 17px);
+  line-height: 1.55;
+  letter-spacing: .01em;
+  color: rgba(247,245,238,.88);
+}
+.discover-link {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .055em;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(247,245,238,.7);
+  padding-bottom: 4px;
+}
+.signup__copy p {
+  max-width: 470px;
+  margin: 18px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: .78;
+}
+.signup__youtube {
+  display: inline-block;
+  margin-top: 4px;
+  width: fit-content;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .055em;
+  text-underline-offset: 5px;
+}
+@media (max-width: 700px) {
+  .channel { font-size: 12px; padding: 10px 14px; }
+  .hero__descriptor { margin-top: 18px; font-size: 14px; }
+  .discover-link { margin-top: 20px; }
+}
+
+
+/* --- 2026-09-01 revision: channel promotion + final hero asset --- */
+.hero__top .channel {
+  margin-left: auto;
+}
+
+/* A memorable, non-button channel address inside the moving hero. */
+.channel-promo {
+  display: inline-block;
+  margin-top: 28px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: clamp(13px, 1.05vw, 16px);
+  line-height: 1.25;
+  letter-spacing: .095em;
+  font-weight: 500;
+  opacity: .96;
+  text-shadow: 0 1px 18px rgba(0,0,0,.28);
+  border-bottom: 1px solid rgba(247,245,238,.58);
+  padding-bottom: 5px;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+.channel-promo:hover {
+  opacity: 1;
+  border-bottom-color: rgba(247,245,238,.95);
+}
+.channel-promo:focus-visible {
+  outline-color: var(--white);
+}
+@media (max-width: 700px) {
+  .channel-promo {
+    margin-top: 22px;
+    font-size: 12px;
+    letter-spacing: .075em;
+  }
+}
+
+
+/* --- Nilüfer typography system: used across the whole document --- */
+:root {
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Merriweather Sans", Arial, sans-serif;
+}
+
+body,
+button,
+input,
+.channel,
+.channel-promo,
+.hero__subtitle,
+.hero__descriptor,
+.eyebrow,
+.offer p,
+.form,
+.footer,
+.discover-link {
+  font-family: var(--sans);
+}
+
+.hero__title,
+.hero__intro,
+.section-title,
+.offer h3,
+.signup h2 {
+  font-family: var(--serif);
+}
+
+/* Slight weight tuning for these particular families. */
+body { font-weight: 300; }
+.hero__title,
+.hero__intro,
+.section-title,
+.offer h3,
+.signup h2 { font-weight: 400; }
+
+.hero__subtitle,
+.channel,
+.channel-promo,
+.eyebrow,
+.discover-link,
+button {
+  font-weight: 500;
+}
+
+.offer p,
+.hero__descriptor,
+input {
+  font-weight: 300;
+}
+
 </style>
 </head>
 <body>
 <main>
   <section class="hero" aria-labelledby="hal-title">
     <div class="hero__media" aria-hidden="true">
-      <img class="hero-animation" src="hal-loop.avif" alt="">
+      <img class="hero-animation" src="hal-loop-fast150.avif" alt="">
       <img class="hero-still" src="hal-still.png" alt="">
     </div>
     <div class="hero__top">
-      <p class="wordmark">HÂL | Derin Dinleme</p>
-      <a class="channel" href="https://www.youtube.com/@halderindinleme?themeRefresh=1" target="_blank" rel="noreferrer">youtube.com/@halderindinleme</a>
+      <a class="channel" href="https://www.youtube.com/@halderindinleme?themeRefresh=1" target="_blank" rel="noopener noreferrer">YouTube’da HÂL</a>
     </div>
     <div class="hero__center">
       <h1 class="hero__title" id="hal-title">HÂL</h1>
       <p class="hero__subtitle">Derin Dinleme</p>
+      <a class="channel-promo" href="https://www.youtube.com/@halderindinleme?themeRefresh=1" target="_blank" rel="noopener noreferrer">youtube.com/@halderindinleme</a>
     </div>
     <div class="hero__bottom">
-      <p class="hero__intro">HÂL | Derin Dinleme; ses, sessizlik, beden, dikkat ve düşünce arasında açılan bir derin dinleme alanı.</p>
+      <div class="hero__intro-wrap">
+        <p class="hero__intro">İçinden akan hayatı duy.<br>Kendinle temas et.</p>
+        <p class="hero__descriptor">Yoga Nidra, uyku meditasyonları, derin dinleme pratikleri ve ses deneyimleri.<br>Nilüfer Ormanlı ile</p>
+        <a class="discover-link" href="#link1">Pratikleri keşfet</a>
+      </div>
     </div>
+    
   </section>
-
+  <span id="link1" aria-labelledby="link1"></span>
   <section class="content" aria-labelledby="burada-ne-bulacaksin">
     <div class="content__grid">
       <header>
@@ -551,24 +710,24 @@ button:focus-visible, a:focus-visible, input:focus-visible {
       </header>
       <ul class="offer-list">
         <li class="offer">
-          <h3>Derin dinlenme pratikleri</h3>
-          <p>Bedenin ve zihnin sürekli bir şey yapmak zorunda olmadığı alanlar.</p>
+          <h3>Derin Dinleme Pratikleri</h3>
+          <p>O anda içinde ve çevrende olup bitenle daha açık ve incelikli bir temas kurmaya yönelik pratikler.</p>
         </li>
         <li class="offer">
-          <h3>Yoga Nidra ve uyku pratikleri</h3>
-          <p>Uyku ile uyanıklık arasındaki eşikte dinlenme, bırakma ve farkındalık.</p>
+          <h3>Yoga Nidra ve Uyku Meditasyonları</h3>
+          <p>Rehberli derin dinlenme pratikleri ve uykuya geçişe eşlik eden meditasyonlar.</p>
         </li>
         <li class="offer">
-          <h3>Ses temelli deneyimler</h3>
-          <p>Tını, titreşim, sessizlik ve dikkatle kurulan dinleme alanları.</p>
+          <h3>Ses Temelli Deneyimler</h3>
+          <p>Tını, titreşim ve sessizlikle şekillenen ses yolculukları.</p>
         </li>
         <li class="offer">
-          <h3>Kısa pratikler</h3>
-          <p>Günün içinde kendi ritmine geri dönmek için küçük duraklar.</p>
+          <h3>Kısa Pratikler</h3>
+          <p>Günün içinde kısa bir ara verip kendinle yeniden temas kurabileceğin pratikler.</p>
         </li>
         <li class="offer">
-          <h3>Podcastler ve konuşmalar</h3>
-          <p>Ses, beden, dikkat, dinlenme, yaratıcılık ve insanın iç dünyası üzerine daha derin sohbetler ve araştırmalar.</p>
+          <h3>Podcastler ve Konuşmalar</h3>
+          <p>Ses, ifade, yaratıcılık ve yaşamla kurduğumuz ilişki üzerine düşünceler ve sohbetler.</p>
         </li>
       </ul>
     </div>
@@ -577,18 +736,19 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   <section class="signup" aria-labelledby="signup-title">
     <div class="signup__ring" aria-hidden="true"></div>
     <div class="signup__inner">
-      <h2 id="signup-title">Yeni yayınlardan haberdar ol.</h2>
+      <div class="signup__copy"><h2 id="signup-title">Yeni yayınlardan haberdar ol.</h2><p>Yeni pratikler ve podcast bölümleri yayımlandığında sana haber verelim.</p></div>
       <form class="form" id="hal-form">
         <div class="field">
           <label for="name">İsim</label>
           <input id="name" name="name" autocomplete="name" required />
         </div>
         <div class="field">
-          <label for="email">E-mail</label>
+          <label for="email">E-posta</label>
           <input id="email" name="email" type="email" autocomplete="email" required />
         </div>
-        <button type="submit">HÂL’e katıl</button>
+        <button type="submit">Haberdar ol</button>
         <p class="demo-note" id="form-note">Prototype: form henüz gerçek bir kayıt endpoint’ine bağlı değil.</p>
+        <a class="signup__youtube" href="https://www.youtube.com/@halderindinleme?themeRefresh=1" target="_blank" rel="noopener noreferrer">YouTube’da HÂL</a>
       </form>
     </div>
   </section>
@@ -596,7 +756,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 <footer class="footer">
   <div class="footer__inner">
     <span>HÂL | Derin Dinleme</span>
-    <a href="https://www.youtube.com/@halderindinleme?themeRefresh=1" target="_blank" rel="noreferrer">youtube.com/@halderindinleme</a>
+    <a href="https://www.youtube.com/@halderindinleme?themeRefresh=1" target="_blank" rel="noopener noreferrer">YouTube’da HÂL</a>
   </div>
 </footer>
 <script>
